@@ -9,6 +9,8 @@
       --dashboard-edge: #06121c;
       /* Increase --crop if the viewer bars show, or decrease it if the report's bottom edge is cut. */
       --crop: 64px;
+      --lime: #a6e85b;
+      color-scheme: dark;
     }
 
     * { box-sizing: border-box; }
@@ -41,6 +43,50 @@
       line-height: 1.15;
     }
 
+    .header-actions, .zoom-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .header-actions { gap: 16px; }
+
+    .zoom-controls {
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .zoom-controls button {
+      min-width: 27px;
+      min-height: 27px;
+      padding: 2px 7px;
+      border: 1px solid #38515e;
+      border-radius: 6px;
+      background: rgb(13 34 50 / 80%);
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .zoom-controls button:not(:disabled):hover,
+    .zoom-controls button[aria-pressed="true"] {
+      border-color: var(--lime);
+      background: #23382a;
+      color: var(--lime);
+    }
+
+    .zoom-controls button:disabled { opacity: 0.5; cursor: default; }
+
+    .zoom-controls input {
+      width: 96px;
+      margin: 0;
+      accent-color: var(--lime);
+      cursor: pointer;
+    }
+
+    .zoom-controls output { min-width: 3.25em; text-align: center; }
+
     nav {
       display: flex;
       gap: 16px;
@@ -49,44 +95,177 @@
     }
 
     a { color: #bcdbef; }
-    a:focus-visible { outline: 2px solid #a6e85b; outline-offset: 3px; }
+    :is(a, button, input, .report-viewport):focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+    }
 
     .report-viewport {
+      --report-width: min(100vw, calc((100vh - 48px) * 1920 / 1904));
+      --report-height: min(calc(100vh - 48px), calc(100vw * 1904 / 1920));
+      position: relative;
+      overflow: auto;
+      height: calc(100vh - 48px);
+      background: var(--dashboard-edge);
+      scrollbar-color: var(--lime) var(--dashboard-edge);
+      scrollbar-width: thin;
+    }
+
+    .report-space {
+      display: grid;
+      place-items: center;
+      width: max(100%, var(--report-width));
+      height: max(100%, var(--report-height));
+    }
+
+    .report-frame {
       position: relative;
       overflow: hidden;
-      height: calc(100vh - 48px);
+      width: var(--report-width);
+      height: var(--report-height);
       background: var(--dashboard-edge);
     }
 
-    .report-viewport iframe {
+    .report-frame iframe {
+      position: absolute;
+      inset: 0 auto auto 0;
       display: block;
       width: 100%;
       height: calc(100% + var(--crop));
       border: 0;
+      background: var(--dashboard-edge);
     }
 
+    .report-frame.is-loading iframe { visibility: hidden; }
+
     @supports (height: 100dvh) {
-      .report-viewport { height: calc(100dvh - 48px); }
+      .report-viewport {
+        --report-width: min(100vw, calc((100dvh - 48px) * 1920 / 1904));
+        --report-height: min(calc(100dvh - 48px), calc(100vw * 1904 / 1920));
+        height: calc(100dvh - 48px);
+      }
+    }
+
+    @media (max-width: 699px) {
+      .zoom-controls input, .zoom-controls output, #zoom-100 { display: none; }
+      .header-actions, .zoom-controls { gap: 5px; }
     }
 
     @media (max-width: 480px) {
-      header { padding: 0 10px; }
-      nav { gap: 8px; font-size: 0.75rem; }
+      header { gap: 6px; padding: 0 10px; }
+      h1 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+      nav { gap: 7px; font-size: 0.75rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>HealthScope: Visualizing Health Trends Using Public Health Statistics</h1>
-    <nav aria-label="Project links">
-      <a href="https://github.com/Keazaman/healthscope-dashboard">GitHub</a>
-      <a href="https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics">Kaggle</a>
-    </nav>
+    <div class="header-actions">
+      <div class="zoom-controls" role="group" aria-label="Report zoom">
+        <button id="zoom-out" type="button" title="Zoom out (−)" aria-label="Zoom out">−</button>
+        <input id="zoom-slider" type="range" min="50" max="200" step="10" value="100"
+               title="Zoom from 50% to 200%" aria-label="Report zoom percentage">
+        <button id="zoom-in" type="button" title="Zoom in (+)" aria-label="Zoom in">+</button>
+        <output id="zoom-value" for="zoom-slider" aria-label="Current report zoom">100%</output>
+        <button id="zoom-fit" type="button" title="Fit the report to the window (0)"
+                aria-label="Fit report to window" aria-pressed="true">Fit</button>
+        <button id="zoom-100" type="button" title="Set zoom to 100% of the fitted size"
+                aria-label="Set zoom to 100 percent" aria-pressed="false">100%</button>
+      </div>
+      <nav aria-label="Project links">
+        <a href="https://github.com/Keazaman/healthscope-dashboard">GitHub</a>
+        <a href="https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics">Kaggle</a>
+      </nav>
+    </div>
   </header>
   <main>
-    <div class="report-viewport">
-      <iframe title="HealthScope" src="https://app.powerbi.com/view?r=eyJrIjoiNGE2NjdkYjUtYTMwZC00MzhkLWIwZjktZDhhMjljYzVjOWI2IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" allowfullscreen></iframe>
+    <div class="report-viewport" tabindex="0" role="region" aria-label="Scrollable Power BI dashboard">
+      <div class="report-space">
+        <div class="report-frame">
+          <iframe title="HealthScope" src="https://app.powerbi.com/view?r=eyJrIjoiNGE2NjdkYjUtYTMwZC00MzhkLWIwZjktZDhhMjljYzVjOWI2IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </main>
+  <script>
+    const viewport = document.querySelector('.report-viewport');
+    const frame = document.querySelector('.report-frame');
+    const iframe = frame.querySelector('iframe');
+    const slider = document.getElementById('zoom-slider');
+    const output = document.getElementById('zoom-value');
+    const zoomOut = document.getElementById('zoom-out');
+    const zoomIn = document.getElementById('zoom-in');
+    const fit = document.getElementById('zoom-fit');
+    const normal = document.getElementById('zoom-100');
+    const storageKey = 'healthscope-report-zoom';
+    const canvas = { width: 1920, height: 1904 };
+    const min = Number(slider.min);
+    const max = Number(slider.max);
+    const step = Number(slider.step);
+    let zoom = 100;
+    let fitting = true;
+
+    frame.classList.add('is-loading');
+    iframe.addEventListener('load', () => frame.classList.remove('is-loading'), { once: true });
+
+    function sizeReport() {
+      // Measure the outer viewport so a newly visible scrollbar does not change the Fit scale.
+      const scale = Math.min(viewport.offsetWidth / canvas.width, viewport.offsetHeight / canvas.height);
+      viewport.style.setProperty('--report-width', `${canvas.width * scale * zoom / 100}px`);
+      viewport.style.setProperty('--report-height', `${canvas.height * scale * zoom / 100}px`);
+    }
+
+    function setZoom(value, fitMode = false) {
+      zoom = Math.min(max, Math.max(min, Math.round(value / step) * step));
+      fitting = fitMode;
+      slider.value = zoom;
+      slider.setAttribute('aria-valuetext', `${zoom}%`);
+      output.value = `${zoom}%`;
+      zoomOut.disabled = zoom === min;
+      zoomIn.disabled = zoom === max;
+      fit.setAttribute('aria-pressed', String(fitting));
+      normal.setAttribute('aria-pressed', String(!fitting && zoom === 100));
+      sizeReport();
+      if (fitting) viewport.scrollTo(0, 0);
+
+      try {
+        localStorage.setItem(storageKey, fitting ? 'fit' : String(zoom));
+      } catch {
+        // The controls still work when storage is unavailable.
+      }
+    }
+
+    let saved = 'fit';
+    try {
+      saved = localStorage.getItem(storageKey) || 'fit';
+    } catch {
+      // Keep the default Fit mode.
+    }
+    const savedZoom = Number(saved);
+    const restoreFit = saved === 'fit' || !Number.isFinite(savedZoom) || savedZoom < min || savedZoom > max;
+    setZoom(restoreFit ? 100 : savedZoom, restoreFit);
+    new ResizeObserver(sizeReport).observe(viewport);
+
+    slider.addEventListener('input', () => setZoom(Number(slider.value)));
+    zoomOut.addEventListener('click', () => setZoom(zoom - step));
+    zoomIn.addEventListener('click', () => setZoom(zoom + step));
+    fit.addEventListener('click', () => setZoom(100, true));
+    normal.addEventListener('click', () => setZoom(100));
+
+    document.addEventListener('keydown', event => {
+      if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.key === '+') setZoom(zoom + step);
+      else if (event.key === '-') setZoom(zoom - step);
+      else if (event.key === '0') setZoom(100, true);
+      else return;
+      event.preventDefault();
+    });
+  </script>
 </body>
 </html>
