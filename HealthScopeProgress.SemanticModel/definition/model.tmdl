@@ -20,6 +20,7 @@ ref table DimCountry
 ref table Measure
 ref table 'Treatment Measure'
 ref table 'Entity Colours'
+ref table 'Overview Photos'
 
 ref cultureInfo en-US
 

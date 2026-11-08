@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HealthScope: Visualizing Health Trends Using Public Health Statistics</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #06121c;
+      color: #eef7fb;
+      font-family: system-ui, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      height: 48px;
+      padding: 0 16px;
+      background: #0d2232;
+      border-bottom: 1px solid #294552;
+    }
+
+    h1 {
+      min-width: 0;
+      margin: 0;
+      font-size: clamp(0.6875rem, 2vw, 1rem);
+      line-height: 1.15;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      flex-shrink: 0;
+      font-size: 0.8125rem;
+    }
+
+    a { color: #bcdbef; }
+    a:focus-visible { outline: 2px solid #a6e85b; outline-offset: 3px; }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: calc(100vh - 48px);
+      border: 0;
+    }
+
+    @supports (height: 100dvh) {
+      iframe { height: calc(100dvh - 48px); }
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 0 10px; }
+      nav { gap: 8px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HealthScope: Visualizing Health Trends Using Public Health Statistics</h1>
+    <nav aria-label="Project links">
+      <a href="https://github.com/Keazaman/healthscope-dashboard">GitHub</a>
+      <a href="https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics">Kaggle</a>
+    </nav>
+  </header>
+  <main>
+    <iframe title="HealthScope" src="https://app.powerbi.com/view?r=eyJrIjoiNGE2NjdkYjUtYTMwZC00MzhkLWIwZjktZDhhMjljYzVjOWI2IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" allowfullscreen></iframe>
+  </main>
+</body>
+</html>

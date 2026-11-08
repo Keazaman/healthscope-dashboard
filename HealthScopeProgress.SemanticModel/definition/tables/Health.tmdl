@@ -151,7 +151,13 @@ table Health
 			VAR Y1 = MAX('Health'[Year])
 			VAR CountryLabel = SELECTEDVALUE('DimCountry'[Country], "Global")
 			VAR CountryCount = DISTINCTCOUNT('Health'[Country])
-			RETURN "<div class='hero'><div class='chips2'><span class='chip2'>" & FORMAT(Y0,"0") & IF(Y0=Y1,"","–" & FORMAT(Y1,"0")) & "</span><span class='chip2'>" & IF(CountryCount=1,SELECTEDVALUE('Health'[Country]),FORMAT(CountryCount,"0") & " countries") & "</span></div><h1 class='big'>" & IF(CountryCount=1,SELECTEDVALUE('Health'[Country]) & " health picture","Global health overview") & "</h1><div class='hmeta'>◎ &nbsp; Dataset · " & FORMAT([Reported Records],"#,0") & " records in view</div></div>"
+			VAR PhotoKey = IF(HASONEFILTER('DimCountry'[Country]), SELECTEDVALUE('DimCountry'[Country], "Default"), "Default")
+			VAR PhotoData = LOOKUPVALUE('Overview Photos'[Base64], 'Overview Photos'[Country], PhotoKey)
+			VAR PhotoAlt = LOOKUPVALUE('Overview Photos'[Alt Text], 'Overview Photos'[Country], PhotoKey)
+			VAR PhotoCredit = LOOKUPVALUE('Overview Photos'[Credit HTML], 'Overview Photos'[Country], PhotoKey)
+			VAR PhotoBlock = IF(NOT ISBLANK(PhotoData),
+				"<figure style='width:480px;max-width:100%;margin:0 0 18px;flex:none'><img src='data:image/jpeg;base64," & PhotoData & "' alt='" & PhotoAlt & "' style='display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:16px;object-fit:cover'><figcaption style='color:var(--muted);font-size:12pt;margin-top:6px'>Photo: " & PhotoCredit & "</figcaption></figure>")
+			RETURN "<div class='hero'>" & PhotoBlock & "<div class='chips2'><span class='chip2'>" & FORMAT(Y0,"0") & IF(Y0=Y1,"","–" & FORMAT(Y1,"0")) & "</span><span class='chip2'>" & IF(CountryCount=1,SELECTEDVALUE('Health'[Country]),FORMAT(CountryCount,"0") & " countries") & "</span></div><h1 class='big'>" & IF(CountryCount=1,SELECTEDVALUE('Health'[Country]) & " health picture","Global health overview") & "</h1><div class='hmeta'>◎ &nbsp; Dataset · " & FORMAT([Reported Records],"#,0") & " records in view</div></div>"
 		displayFolder: ExplorerSuper
 		lineageTag: bf52a234-4df2-5313-a425-82c44f44c35a
 

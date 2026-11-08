@@ -61,12 +61,12 @@
                       "Entity": "DimCountry"
                     }
                   },
-                  "Property": "Avg Recovery Rate"
+                  "Property": "Avg Prevalence Rate"
                 }
               },
-              "queryRef": "DimCountry.Avg Recovery Rate",
-              "nativeQueryRef": "Recovery",
-              "displayName": "Recovery"
+              "queryRef": "DimCountry.Avg Prevalence Rate",
+              "nativeQueryRef": "Prevalence",
+              "displayName": "Prevalence"
             }
           ],
           "fieldParameters": [

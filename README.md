@@ -1,5 +1,7 @@
 # HealthScope: Visualizing Health Trends Using Public Health Statistics
 
+**Live dashboard:** [Open HealthScope](https://keazaman.github.io/healthscope-dashboard/)
+
 HealthScope is an interactive Power BI dashboard for exploring public health statistics across countries, years, diseases, and population groups. It brings health indicators, healthcare access, and treatment measures together in ten dashboard pages.
 
 ## Dataset
