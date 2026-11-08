@@ -5,7 +5,7 @@ HealthScope is an interactive Power BI dashboard for exploring public health sta
 ## Dataset
 
 - Original dataset: [Global Health Statistics by MalaiarasuGRaj on Kaggle](https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics).
-- Working file: `HealthScope_cleaned.csv` (24 columns), the cleaned version of the original dataset. It exceeds GitHub’s 100 MiB limit for files tracked in Git. Download it from the Releases page. **Release link:** To be added.
+- Working file: `HealthScope_cleaned.csv` (24 columns), the cleaned version of the original dataset. It exceeds GitHub’s 100 MiB limit for files tracked in Git. Download it from the Releases page. **Release link:** [HealthScope dataset v1.0](https://github.com/Keazaman/healthscope-dashboard/releases/tag/v1.0).
 
 ## Dashboard pages
 
@@ -24,5 +24,6 @@ HealthScope is an interactive Power BI dashboard for exploring public health sta
 
 1. Install Power BI Desktop.
 2. Download `HealthScope_cleaned.csv` from the Releases page.
+   - Unzip the download before opening the project.
 3. Open `HealthScopeProgress.pbip` in Power BI Desktop.
 4. Select **Transform data**, open the **Health** query, and select **Source**. Change `C:\Users\User\Documents\FYP\HealthScope_cleaned.csv` to the path of your downloaded CSV, then select **Close & Apply**.
