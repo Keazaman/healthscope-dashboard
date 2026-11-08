@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HealthScope: Visualizing Health Trends Using Public Health Statistics</title>
   <style>
+    :root {
+      --dashboard-edge: #06121c;
+      /* Increase --crop if the viewer bars show, or decrease it if the report's bottom edge is cut. */
+      --crop: 64px;
+    }
+
     * { box-sizing: border-box; }
 
     html, body {
@@ -12,7 +18,7 @@
       height: 100%;
       margin: 0;
       overflow: hidden;
-      background: #06121c;
+      background: var(--dashboard-edge);
       color: #eef7fb;
       font-family: system-ui, sans-serif;
     }
@@ -45,15 +51,22 @@
     a { color: #bcdbef; }
     a:focus-visible { outline: 2px solid #a6e85b; outline-offset: 3px; }
 
-    iframe {
+    .report-viewport {
+      position: relative;
+      overflow: hidden;
+      height: calc(100vh - 48px);
+      background: var(--dashboard-edge);
+    }
+
+    .report-viewport iframe {
       display: block;
       width: 100%;
-      height: calc(100vh - 48px);
+      height: calc(100% + var(--crop));
       border: 0;
     }
 
     @supports (height: 100dvh) {
-      iframe { height: calc(100dvh - 48px); }
+      .report-viewport { height: calc(100dvh - 48px); }
     }
 
     @media (max-width: 480px) {
@@ -71,7 +84,9 @@
     </nav>
   </header>
   <main>
-    <iframe title="HealthScope" src="https://app.powerbi.com/view?r=eyJrIjoiNGE2NjdkYjUtYTMwZC00MzhkLWIwZjktZDhhMjljYzVjOWI2IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" allowfullscreen></iframe>
+    <div class="report-viewport">
+      <iframe title="HealthScope" src="https://app.powerbi.com/view?r=eyJrIjoiNGE2NjdkYjUtYTMwZC00MzhkLWIwZjktZDhhMjljYzVjOWI2IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" allowfullscreen></iframe>
+    </div>
   </main>
 </body>
 </html>
