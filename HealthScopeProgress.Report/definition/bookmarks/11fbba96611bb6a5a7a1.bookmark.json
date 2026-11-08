@@ -1,0 +1,339 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Lowest first",
+  "name": "11fbba96611bb6a5a7a1",
+  "options": {
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "2768805a4f9a18f07a21",
+      "5e42646342161602334c",
+      "a19ad64ed498203244c4",
+      "ab973e3a1d605c926ece",
+      "cd9473c08b327d57b408"
+    ],
+    "suppressActiveSection": true,
+    "suppressDisplay": true
+  },
+  "explorationState": {
+    "version": "1.0",
+    "activeSection": "f0a69ea8cb4be76e7d42",
+    "sections": {
+      "f0a69ea8cb4be76e7d42": {
+        "visualContainers": {
+          "2768805a4f9a18f07a21": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ff8f18e01e898bc482fc",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Total Cases"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e64c009bb45a3d0ca0cb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "5e42646342161602334c": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a19ad64ed498203244c4": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Super - Death Share"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ab973e3a1d605c926ece": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bbafb96d0e96951f694e",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sq",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Est. deaths"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "sq"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cd9473c08b327d57b408": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Reported Records"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

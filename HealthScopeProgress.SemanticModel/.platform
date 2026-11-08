@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "HealthScopeProgress"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "095801b3-e49e-491a-b341-dccaec831157"
+  }
+}

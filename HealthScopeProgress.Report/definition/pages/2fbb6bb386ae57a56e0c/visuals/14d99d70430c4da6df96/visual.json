@@ -1,0 +1,540 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "14d99d70430c4da6df96",
+  "position": {
+    "x": 296,
+    "y": 152,
+    "z": 95000,
+    "height": 676,
+    "width": 444,
+    "tabOrder": 95000
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Health"
+                    }
+                  },
+                  "Property": "Super - Insight HTML"
+                }
+              },
+              "queryRef": "Health.Super - Insight HTML",
+              "nativeQueryRef": "Super - Insight HTML",
+              "displayName": "Super - Insight HTML"
+            }
+          ]
+        },
+        "sampling": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Health"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "Health.Country",
+              "nativeQueryRef": "Country",
+              "displayName": "Country"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "stylesheet": [
+        {
+          "properties": {
+            "stylesheet": {
+              "expr": {
+                "Literal": {
+                  "Value": "':root{--ink:#EEF7FB;--ink2:#BCCFDA;--muted:#8FA7B6;--line:rgba(255,255,255,.13);font-family:''Segoe UI'',sans-serif;color:var(--ink)}\n*{box-sizing:border-box}#htmlContent{height:100%;width:100%;padding:0;background:transparent;overflow:hidden;font-family:''Segoe UI'',sans-serif;font-size:14pt;line-height:1.4;color:var(--ink)}\n#htmlContent>div:only-child{height:100%}.htmlViewerEntry{box-sizing:border-box}h1,h2,h3,p{margin:0}h2,.ph h2{font-size:16pt;font-weight:600;line-height:1.2}.ph{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}.sub{font-size:14pt;color:var(--muted)}\n.hero{height:608px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 12px}.chips2{display:flex;gap:12px;flex-wrap:wrap}.chip2{padding:6px 14px;border-radius:16px;background:#ffffff18;border:1px solid var(--line);font-size:14pt;font-weight:600}.big{font-size:48pt;line-height:1.1;font-weight:700;letter-spacing:-.02em;margin:20px 0 16px}.hmeta{font-size:16pt;color:var(--ink2);line-height:1.4}\n.tiles{height:608px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:16px}.tile{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:20px;padding:16px;background:rgba(13,34,50,.55);display:flex;flex-direction:column;justify-content:space-between}.tl{font-size:14pt;line-height:1.15;color:var(--ink2);display:flex;justify-content:space-between;align-items:flex-start;gap:4px}.tv{font-size:34pt;font-weight:600;line-height:1.1;margin:6px 0 8px;white-space:nowrap}.tile:nth-child(n+5) .tv{font-size:30pt}.chipd{font-size:11pt;line-height:1.2;padding:2px 7px;border-radius:16px;background:#a6e85b29;color:#A6E85B;font-weight:600;white-space:nowrap}.chipd.bad{color:#FF7A66;background:#ff7a6629}.sp,.sp svg{height:42px;width:100%;margin:0}.segs{display:flex;gap:3px;margin:4px 0}.segs span{height:10px;flex:1;background:#ffffff1f;border-radius:3px}.segs .on{background:#A6E85B;box-shadow:0 0 8px #a6e85b66}\n.ai{height:640px;display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid #a6e85b66;border-radius:24px;background:linear-gradient(145deg,#387b32e8,#15594de0 55%,#0d2232e8);overflow:hidden}.ai .art{height:180px;min-height:180px;width:100%;opacity:.9;margin:4px 0 8px}.ai .ph{margin:0}.pill{font-size:11pt;padding:4px 10px;border-radius:16px;border:1px solid var(--line);color:var(--ink2);white-space:nowrap}.pill.on{background:#a6e85b24;color:#A6E85B;border-color:#a6e85b66}.ai h3{font-size:22pt;font-weight:600;line-height:1.2;margin:0 0 2px}.ai p{font-size:14pt;line-height:1.5;color:#e3f2e8}.facts{display:grid;gap:8px}.fact{font-size:13pt;line-height:1.45;padding:10px 12px;background:#071d2c77;border-radius:16px}.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.act{font-size:12pt;padding:10px 12px;border-radius:20px;background:#ffffffeb;color:#0B1A10;font-weight:600;white-space:nowrap}.act.alt{background:#091f2b88;color:var(--ink);border:1px solid #ffffff44}.note{font-size:11pt;color:#c7dfcf;line-height:1.4}\n.watch-host,.map-host{height:448px;width:100%;padding:0;position:relative}.watch-host .htmlViewerEntry{height:auto}.wrow{display:grid;grid-template-columns:40px minmax(0,1fr) auto;grid-template-rows:24px 18px 4px;gap:2px 10px;align-items:center;padding:10px;height:74px;border:1px solid var(--line);border-radius:20px;background:#ffffff0d;margin-bottom:8px;cursor:pointer}.dot{width:40px;height:40px;border-radius:16px;grid-column:1;grid-row:1/4;display:grid;place-items:center;font-size:14pt;font-weight:700;color:white}.wn{grid-column:2;grid-row:1;font-size:14pt;font-weight:600;white-space:nowrap}.wv{grid-column:3;grid-row:1;font-size:18pt;font-weight:600;text-align:right}.ws{grid-column:2;grid-row:2;font-size:12pt;color:var(--muted)}.st{grid-column:3;grid-row:2;font-size:11pt;padding:0 6px;border-radius:16px;justify-self:end}.risk{color:#FF7A66;background:#ff7a6633}.warn{color:#F2B84B;background:#f2b84b33}.ok{color:#A6E85B;background:#a6e85b2e}.bar2{grid-column:2/4;grid-row:3;height:4px;background:#ffffff1a;overflow:hidden;border-radius:3px}.bar2 b{display:block;height:100%;border-radius:3px}\n.countrytile{position:absolute;transform:translateX(-50%);width:32px;cursor:pointer}.countrytile svg{width:32px;height:38px}.countrytile svg text{font-family:''Segoe UI'',sans-serif!important;font-size:13pt!important}.countrytile[style*=''top:56px'']{top:72px!important}.countrytile[style*=''top:102px'']{top:140px!important}.countrytile[style*=''top:148px'']{top:208px!important}.countrytile[style*=''top:194px'']{top:276px!important}.countrytile[style*=''top:240px'']{top:344px!important}.legend2{position:absolute;bottom:0;left:0;right:0;display:flex;gap:12px;flex-wrap:wrap;font-size:11pt;color:var(--ink2)}.legend2 i{display:inline-block;width:10px;height:10px;margin-right:4px;border-radius:3px}\n.readout{height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}.rl{font-size:14pt;color:var(--ink2)}.rv{font-size:40pt;line-height:1.1;font-weight:600;white-space:nowrap}\n\n/* The report page scrolls; these fully sized panels do not need nested scrollbars. */\nhtml,body{overflow:hidden!important;scrollbar-width:none}*::-webkit-scrollbar{display:none}\n'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "crossFilter": [
+        {
+          "properties": {
+            "enabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "useTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparencyPercent": {
+              "expr": {
+                "Literal": {
+                  "Value": "74D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "contentFormatting": [
+        {
+          "properties": {
+            "fontColour": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF7FB'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "compatibility": [
+        {
+          "properties": {
+            "legacyRendering": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0D2232'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "45D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2C3F4D'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF7FB'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "40D"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "spaceBelowTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "spaceBelowTitleArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "spaceAbovePlotArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "spaceBelowSubTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "spaceAboveSubtitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "spaceAboveDivider": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "800bb84028de0ed07c98",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Health"
+              }
+            },
+            "Property": "Country"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "sq",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "m",
+                        "Entity": "DimCountry",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "h"
+                            }
+                          },
+                          "Property": "Country"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 1,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "m"
+                              }
+                            },
+                            "Property": "Avg Healthcare Access"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 1
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "h",
+              "Entity": "Health",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "h"
+                          }
+                        },
+                        "Property": "Country"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "sq"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

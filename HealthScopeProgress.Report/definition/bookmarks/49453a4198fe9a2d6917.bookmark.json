@@ -1,0 +1,4438 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Reset filters - Other health",
+  "name": "49453a4198fe9a2d6917",
+  "options": {
+    "suppressActiveSection": true,
+    "suppressDisplay": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "86b8b9f7ae6351a3f58e",
+    "filters": {
+      "byExpr": []
+    },
+    "sections": {
+      "24348c5b3a0f3b472be2": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "0339f0b01fc620e27391": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Selected Measure Value"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "143e7babb1b8b220d2f6": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Healthcare Access"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "16e66d9b1ba27f3b2b11": {
+            "singleVisual": {}
+          },
+          "1739a4d04e5e813a4bd4": {
+            "singleVisual": {}
+          },
+          "18048fb6c0a776589a9f": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "27c453ce392bebbb9c17": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "2810d132fd6f82af054f": {
+            "singleVisual": {}
+          },
+          "29b49b413f457107039d": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "489a006279cfe4fe495c": {
+            "singleVisual": {}
+          },
+          "4a8602fb3537aa529f8a": {
+            "singleVisual": {}
+          },
+          "56719779be52a4619d27": {
+            "singleVisual": {}
+          },
+          "682bba21d463f2c1cb71": {
+            "singleVisual": {}
+          },
+          "7989cee611fb599190a4": {
+            "singleVisual": {}
+          },
+          "944035e66ac43a1c62f0": {
+            "singleVisual": {}
+          },
+          "955ac33748f3317d3997": {
+            "singleVisual": {}
+          },
+          "ad9a6827a5909674dedf": {
+            "singleVisual": {}
+          },
+          "b08a0ee4d733420dfcda": {
+            "singleVisual": {}
+          },
+          "b4b7f2ca19620d7637f6": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "b80703423552bc54bd2e": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "bf304d74747bcd89c287": {
+            "singleVisual": {}
+          },
+          "c86f8005986bc40c4e0e": {
+            "singleVisual": {}
+          },
+          "cb126999402268f31696": {
+            "singleVisual": {}
+          },
+          "cb89e43107bc342e9d32": {
+            "singleVisual": {}
+          },
+          "d79d7b61749eec71aead": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "dd4a2f64121df9f17dd1": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "m",
+                                "Entity": "Measure",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "m"
+                                            }
+                                          },
+                                          "Property": "Measure Fields"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'''DimCountry''[Avg Mortality Rate]'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                },
+                                "Annotations": {
+                                  "filterExpressionMetadata": {
+                                    "expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Measure"
+                                            }
+                                          },
+                                          "Property": "Measure"
+                                        }
+                                      }
+                                    ],
+                                    "decomposedIdentities": {
+                                      "values": [
+                                        [
+                                          {
+                                            "0": [
+                                              {
+                                                "Literal": {
+                                                  "Value": "'''DimCountry''[Avg Mortality Rate]'"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      ],
+                                      "columns": [
+                                        {
+                                          "value": {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Measure"
+                                                }
+                                              },
+                                              "Property": "Measure Fields"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "valueMap": [
+                                      {
+                                        "0": "Mortality"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "singleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "selectAllCheckboxEnabled": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "2fbb6bb386ae57a56e0c": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "033a750a42900f06e89f": {
+            "singleVisual": {}
+          },
+          "06452aa89324af54477e": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "1038b8a418b7e360ceec": {
+            "singleVisual": {}
+          },
+          "127eca11a7d062e17051": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "422d3a4cb62a356c1359",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sq",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                },
+                                {
+                                  "Name": "m",
+                                  "Entity": "DimCountry",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "m"
+                                        }
+                                      },
+                                      "Property": "Avg Mortality Rate"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 5
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "sq"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Mortality Rate"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "14d99d70430c4da6df96": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "800bb84028de0ed07c98",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sq",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                },
+                                {
+                                  "Name": "m",
+                                  "Entity": "DimCountry",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Country"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 1,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "m"
+                                        }
+                                      },
+                                      "Property": "Avg Healthcare Access"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 1
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Country"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "sq"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Country"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "16b97d690be2e1869c30": {
+            "singleVisual": {}
+          },
+          "23929f5f81873645bc74": {
+            "singleVisual": {}
+          },
+          "2931c6afc39a6c8faf3e": {
+            "singleVisual": {}
+          },
+          "2c5eeb43b33dd7c29ab1": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "m",
+                                "Entity": "Measure",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "m"
+                                            }
+                                          },
+                                          "Property": "Measure Fields"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'''DimCountry''[Avg Mortality Rate]'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                },
+                                "Annotations": {
+                                  "filterExpressionMetadata": {
+                                    "expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Measure"
+                                            }
+                                          },
+                                          "Property": "Measure"
+                                        }
+                                      }
+                                    ],
+                                    "decomposedIdentities": {
+                                      "values": [
+                                        [
+                                          {
+                                            "0": [
+                                              {
+                                                "Literal": {
+                                                  "Value": "'''DimCountry''[Avg Mortality Rate]'"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      ],
+                                      "columns": [
+                                        {
+                                          "value": {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Measure"
+                                                }
+                                              },
+                                              "Property": "Measure Fields"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "valueMap": [
+                                      {
+                                        "0": "Mortality"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "singleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "selectAllCheckboxEnabled": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "2ec277f6f08247178ea9": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "3984f4f0b4899b9135d3": {
+            "singleVisual": {}
+          },
+          "3c41752740687b2b0c02": {
+            "singleVisual": {}
+          },
+          "3cadd787d19ec58e7028": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "42c5c8ed4151718cc8bf": {
+            "singleVisual": {}
+          },
+          "48f9afd32371e46223ac": {
+            "singleVisual": {}
+          },
+          "51aeb77b4d27455af2c2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "91af18dc30d1741f4226",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Selected Measure Value"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Selected Measure Value"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "5980a762e059f708bce9": {
+            "singleVisual": {}
+          },
+          "5b8c29f57f7775b2016c": {
+            "singleVisual": {}
+          },
+          "5bb8ae79334d0b032162": {
+            "singleVisual": {}
+          },
+          "5ccc2b74c40313c7d6c7": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Selected Measure Value"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "67c2aca6b50f6e68e6e4": {
+            "singleVisual": {}
+          },
+          "6ec77a98129c404ed6b1": {
+            "singleVisual": {}
+          },
+          "76e0bab81d5a22654b84": {
+            "singleVisual": {}
+          },
+          "7763f8925efd3a3dcfb2": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "7827089389121c4de489": {
+            "singleVisual": {}
+          },
+          "803a5e88f7ecc71dbf8e": {
+            "singleVisual": {}
+          },
+          "88fd987afcd67a3e43a0": {
+            "singleVisual": {}
+          },
+          "8afc1efa96c2e8e8651e": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "97bcde4a5d163dedbc0a": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "9c6996160c2396e9714b": {
+            "singleVisual": {}
+          },
+          "aa72c68935ff21b95bfa": {
+            "singleVisual": {}
+          },
+          "b7bc4337b997a0c7139e": {
+            "singleVisual": {}
+          },
+          "ccaf14a45dd57e705148": {
+            "singleVisual": {}
+          },
+          "e77ad17bd6e8852167b4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "184b8e17a32d34502dbe",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "ee2f51574e05a0a7711d": {
+            "singleVisual": {}
+          }
+        }
+      },
+      "47bf9799af136a8a9846": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "01af8253311c647550d8": {
+            "singleVisual": {}
+          },
+          "034d3512a1d73b03a4d4": {
+            "singleVisual": {}
+          },
+          "08d55d2440b11b64e00d": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "0b968800a11b41bc3714": {
+            "singleVisual": {}
+          },
+          "0e8e2ac779eef187bae7": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "m",
+                                "Entity": "Measure",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "m"
+                                            }
+                                          },
+                                          "Property": "Measure Fields"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'''DimCountry''[Avg Mortality Rate]'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                },
+                                "Annotations": {
+                                  "filterExpressionMetadata": {
+                                    "expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Measure"
+                                            }
+                                          },
+                                          "Property": "Measure"
+                                        }
+                                      }
+                                    ],
+                                    "decomposedIdentities": {
+                                      "values": [
+                                        [
+                                          {
+                                            "0": [
+                                              {
+                                                "Literal": {
+                                                  "Value": "'''DimCountry''[Avg Mortality Rate]'"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      ],
+                                      "columns": [
+                                        {
+                                          "value": {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Measure"
+                                                }
+                                              },
+                                              "Property": "Measure Fields"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "valueMap": [
+                                      {
+                                        "0": "Mortality"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "singleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "selectAllCheckboxEnabled": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "0ee2a08a12d99665bc27": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "195784b615fcd2f2af3e": {
+            "singleVisual": {}
+          },
+          "2599c4c16d846e277ef9": {
+            "singleVisual": {}
+          },
+          "3a8ebf83c00cd4bb8c77": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total DALYs"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "442c995a64993527ed68": {
+            "singleVisual": {}
+          },
+          "5a22b2086938d8fddbf3": {
+            "singleVisual": {}
+          },
+          "62972e0655624caadb26": {
+            "singleVisual": {}
+          },
+          "6baa777a79b9c61aa8f7": {
+            "singleVisual": {}
+          },
+          "814f9dc75b99d2950f27": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "901b76c780033f1dfc83": {
+            "singleVisual": {}
+          },
+          "9427346d02c43d958333": {
+            "singleVisual": {}
+          },
+          "a4b5b10d10a526b1642d": {
+            "singleVisual": {}
+          },
+          "a6b5d3a5019362ff9908": {
+            "singleVisual": {}
+          },
+          "af0688a2e31616cacf83": {
+            "singleVisual": {}
+          },
+          "af5a81baf8a4e9b94984": {
+            "singleVisual": {}
+          },
+          "c21a4ff8e616c8046929": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "d9c586454e56edec854b": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "ecb72ad9f9ac1a3ae56a": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "fc1325f9426d62ef4b2c": {
+            "singleVisual": {}
+          }
+        }
+      },
+      "4b130642e66a10e7b1ea": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "80171659641ff843e6d4",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "h",
+                    "Entity": "Health",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "h"
+                                }
+                              },
+                              "Property": "Gender"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Male'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Health"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "006e27f33d08f1ad1d2c": {
+            "singleVisual": {}
+          },
+          "020d70c555c50579bd5a": {
+            "singleVisual": {}
+          },
+          "04e904b720daf29ee1c5": {
+            "singleVisual": {}
+          },
+          "0ca3ef46d303a20b13ca": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "0fa560c5c864cd9444b8": {
+            "singleVisual": {}
+          },
+          "1211fbb8d9fa2b379f1c": {
+            "singleVisual": {}
+          },
+          "14df96bddc6a3d839a6b": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "1b570d76672144cae1dd": {
+            "singleVisual": {}
+          },
+          "1e87c615dd1cbf0b0c47": {
+            "singleVisual": {}
+          },
+          "231e3a5836d23787322b": {
+            "singleVisual": {}
+          },
+          "401483a5f264d9563b5e": {
+            "singleVisual": {}
+          },
+          "49673ab504798b5b06da": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Super - Death Share"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "56328a7bbb2fcd17d481": {
+            "singleVisual": {}
+          },
+          "5d11b92ace69d328f6a3": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "7a202ef4612a44143249": {
+            "singleVisual": {}
+          },
+          "7efb542ef8bc2efb35ba": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Reported Records"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "83404fee4d8c69de1bb9": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "83fa4df185c494413306": {
+            "singleVisual": {}
+          },
+          "9585ab57887b01b44b72": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "b0555af99c371812956e": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "b7483773a306cb7c628d": {
+            "singleVisual": {}
+          },
+          "b9491ed6a417be44bfd8": {
+            "singleVisual": {}
+          },
+          "bf7d71ce3dd7e42aecb4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6a4649168db63615ea29",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sq",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Est. deaths"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "sq"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c71fa140035b0725e103": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "ce571e6f89dfed8f600b": {
+            "singleVisual": {}
+          },
+          "dad476dd436bf43e01af": {
+            "singleVisual": {}
+          },
+          "dd4559dd5c474a8e7604": {
+            "singleVisual": {}
+          },
+          "dfec3a923cb9899c6102": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ff8f18e01e898bc482fc",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Total Cases"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9b772272445431cd7cd0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ed431906191a9f73fd91": {
+            "singleVisual": {}
+          },
+          "f406ee0ed61c1d270a83": {
+            "singleVisual": {}
+          },
+          "f45f0ea79ab34952980c": {
+            "singleVisual": {}
+          },
+          "fec8c39ce4e61bb510ac": {
+            "singleVisual": {}
+          },
+          "bf0e7ce1e1b738a2e72a": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "bookmarks": [
+                    {
+                      "properties": {
+                        "selectedBookmark": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'a35aaf091558db8e78d1'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "75da10c6f5b6ecbdd68a": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "0f31adfd00c7fa93a906": {
+            "singleVisual": {}
+          },
+          "1b8e36a9123349d60b4c": {
+            "singleVisual": {}
+          },
+          "2839db9da5d31d632038": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "2ca87d7c48c22ffaea36": {
+            "singleVisual": {}
+          },
+          "33119902c1cc5e45e022": {
+            "singleVisual": {}
+          },
+          "4124d2d22a83c6bc5e7f": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "413fea53518690ca453f": {
+            "singleVisual": {}
+          },
+          "57457ec99eb3d6d65a6d": {
+            "singleVisual": {}
+          },
+          "5b59941dc42d337e474c": {
+            "singleVisual": {}
+          },
+          "66e925fcf855d44eb828": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "6e789bb197f6da152cba": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "90d04bf2f5e1a17582e4",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                },
+                                {
+                                  "Name": "d",
+                                  "Entity": "DimCountry",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "d"
+                                        }
+                                      },
+                                      "Property": "Avg Treatment Cost USD"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "7e37083c556407be07d1": {
+            "singleVisual": {}
+          },
+          "847df3cb82341185be39": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "05b267b9b50449628d94",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Healthcare Access"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f5c4fd7c9f1274959e69",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Mortality Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "905f774570b931fe9da4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa10b9b3a78452efd793",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Record Count"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "a545e0802ac9e00cc697": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "05b267b9b50449628d94",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Healthcare Access"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f5c4fd7c9f1274959e69",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Mortality Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "905f774570b931fe9da4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa10b9b3a78452efd793",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Record Count"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "bc6ef6fab8bff0313c2e": {
+            "singleVisual": {}
+          },
+          "becb5e2fb515b146c741": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "c1e6085176ab44c6d42b": {
+            "singleVisual": {}
+          },
+          "cd2853ac21497eb17d0f": {
+            "singleVisual": {}
+          },
+          "ce62112cf34de41b9d6b": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "ce9b6d4a57da2eb528d6": {
+            "singleVisual": {}
+          },
+          "db6fb6815c54c71dddb6": {
+            "singleVisual": {}
+          },
+          "dc30681cadb828f88b87": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "e0fbf2d3c7e7b35d8aa5": {
+            "singleVisual": {}
+          },
+          "ffe495999d2fbad774cc": {
+            "singleVisual": {}
+          }
+        }
+      },
+      "866444dba21c29764822": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "041b509024909e946659": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1573f7f6987223f8653e",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Selected Treatment Value"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Selected Treatment Value"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "044da038176c48487ac8": {
+            "singleVisual": {}
+          },
+          "0a23cc4855e81d3b7c01": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Record Count"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "13c47c8c5bf41cfc30a4": {
+            "singleVisual": {}
+          },
+          "16aed97f0755dff75774": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "1c6af7b2ab6da401ead5": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "3a2f712ab2043160f43d": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "3d5fe8ae109a9821a4f5": {
+            "singleVisual": {}
+          },
+          "43d9ece0a25ea0845d18": {
+            "singleVisual": {}
+          },
+          "47201b39294bac833205": {
+            "singleVisual": {}
+          },
+          "497cd98ac2c9d5d7adb5": {
+            "singleVisual": {}
+          },
+          "61e3c763432dd183f686": {
+            "singleVisual": {}
+          },
+          "6ac39c54163378abd4ba": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "8699779375e4adfb5f60": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "m",
+                                "Entity": "Treatment Measure",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "m"
+                                            }
+                                          },
+                                          "Property": "Treatment Measure Fields"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'''DimCountry''[Avg Treatment Cost USD]'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                },
+                                "Annotations": {
+                                  "filterExpressionMetadata": {
+                                    "expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "Treatment Measure"
+                                            }
+                                          },
+                                          "Property": "Treatment Measure"
+                                        }
+                                      }
+                                    ],
+                                    "decomposedIdentities": {
+                                      "values": [
+                                        [
+                                          {
+                                            "0": [
+                                              {
+                                                "Literal": {
+                                                  "Value": "'''DimCountry''[Avg Treatment Cost USD]'"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      ],
+                                      "columns": [
+                                        {
+                                          "value": {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Entity": "Treatment Measure"
+                                                }
+                                              },
+                                              "Property": "Treatment Measure Fields"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "valueMap": [
+                                      {
+                                        "0": "Treatment cost"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "singleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        },
+                        "selectAllCheckboxEnabled": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "8ceff9dee0099a40ed9c": {
+            "singleVisual": {}
+          },
+          "8e6222741e285acb3210": {
+            "singleVisual": {}
+          },
+          "921cca58e7e1d63ff5bc": {
+            "singleVisual": {}
+          },
+          "9801b5378d279b55fa14": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "a3a38d458125278d42da": {
+            "singleVisual": {}
+          },
+          "bcfc0a4ae6173e569fdc": {
+            "singleVisual": {}
+          },
+          "be554607873c2a5d0566": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "c2471afa03cd9c0f9be0": {
+            "singleVisual": {}
+          },
+          "c897837d387bc96cc198": {
+            "singleVisual": {}
+          },
+          "e33cdcc6441c9da99ef7": {
+            "singleVisual": {}
+          },
+          "e4912ba08b7530f8fe46": {
+            "singleVisual": {}
+          },
+          "ee598877cdc881aa26b8": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Record Count"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f528c141279d185c7b81": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "86b8b9f7ae6351a3f58e": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "09eddaa7f3b6f0f4c38e": {
+            "singleVisual": {}
+          },
+          "16219638ff6253fdc792": {
+            "singleVisual": {}
+          },
+          "2ec1b0990ee19c21127a": {
+            "singleVisual": {}
+          },
+          "3255555da6f0ddb19bd0": {
+            "singleVisual": {}
+          },
+          "3e2ab8c4167e7e9eb7d8": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "4a872454741b2db44157": {
+            "singleVisual": {}
+          },
+          "509517262ac2850b2d29": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "57e49aa2ad41744d57f3": {
+            "singleVisual": {}
+          },
+          "6113648458f9010c8291": {
+            "singleVisual": {}
+          },
+          "70d08b0c0284979d2eda": {
+            "singleVisual": {}
+          },
+          "80fc7a1480e4449955f5": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "97b0721d4cac6d86435f": {
+            "singleVisual": {}
+          },
+          "aeb2d2032310a4be8c73": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "af92d6380ea97fab61b7": {
+            "singleVisual": {}
+          },
+          "b1ee13f81a0291bc53cf": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "bd243a384fb6f238045d": {
+            "singleVisual": {}
+          },
+          "c598da5e28ecf5ce180e": {
+            "singleVisual": {}
+          },
+          "d375f4d00d3ebba5c93a": {
+            "singleVisual": {}
+          },
+          "e9e360e9f91ad741ae85": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "585728a0fc66819c51ca",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9906b49c31d26cc8be79",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimYear"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "438d38cd72d281656937",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "98ea9778bd5e6fc76ee8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Category"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2547744ac87126f41e48",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Age Group"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9ae5ef2f32a9c235dc2f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Gender"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9a3e00e16a90822c0a6c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Treatment Type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "16a8bf71cc41a80422a5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Availability of Vaccines/Treatment"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "59bb456790c7a3b60a1f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Record Count"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e8c08d05a52ed85e5c06",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9e434added60caae54cf",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Prevalence Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "933e40084fb7171b81a2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Incidence Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b91bb49d067542689d9c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Mortality Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6fa2c1eed0f74b8750d1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Recovery Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "84abcf5572d53d51bdf3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Healthcare Access"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "56d0fa967028e44e0675",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Doctors per 1000"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0b45dd34a49c546d0a6a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Hospital Beds per 1000"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d121a6d927bd24aef050",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Treatment Cost USD"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3d118b7da5456585dbd5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg DALYs"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "34676bb5e14750d13204",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Five-Year Improvement"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9cb6f8905b4658694111",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Per Capita Income USD"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "decd47228dbde7ca746a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Education Index"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1e84d2887c46f5e8d7a0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Urbanization Rate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "ef0db4e3d8e9e107be0e": {
+            "singleVisual": {}
+          },
+          "fdbe2f8cdecb59138254": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "ff890ad1cc135fd3eb4a": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "b3cc6d45de25aec34e02": {
+        "filters": {
+          "byExpr": []
+        },
+        "visualContainers": {
+          "024aa80fc581a77908ea": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "0a40e9dc53719156f53e": {
+            "singleVisual": {}
+          },
+          "26c921fb7b70b6c06e95": {
+            "singleVisual": {}
+          },
+          "30fcce536fbb1f9f4d44": {
+            "singleVisual": {}
+          },
+          "4007bab582e9c3bd39e8": {
+            "singleVisual": {}
+          },
+          "489ef463b32d6d37b8d4": {
+            "singleVisual": {}
+          },
+          "4a3264eb171ee4737717": {
+            "singleVisual": {}
+          },
+          "4ce0eb29eb5384bea522": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Healthcare Access"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "503215a92e4040555f64": {
+            "singleVisual": {}
+          },
+          "559002e23abe90dcc6d1": {
+            "singleVisual": {}
+          },
+          "61e616d9f485aee7bd82": {
+            "singleVisual": {}
+          },
+          "764ae2e1349e71e93db8": {
+            "singleVisual": {}
+          },
+          "787a1bd6a0384207c9ae": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "05b267b9b50449628d94",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Healthcare Access"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f5c4fd7c9f1274959e69",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Mortality Rate"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "905f774570b931fe9da4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa10b9b3a78452efd793",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Record Count"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "9150ae10f041780644db": {
+            "singleVisual": {}
+          },
+          "a5673be89d984fc63216": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "a5a58f766fc8ab3366fc": {
+            "singleVisual": {}
+          },
+          "aa85afd81332d3d94048": {
+            "singleVisual": {}
+          },
+          "ab595b486fa2634decd9": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "adc4d49bdda7c76c2317": {
+            "singleVisual": {}
+          },
+          "b19b9066076fa5c89544": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "bc73e027a725ed482b1a": {
+            "singleVisual": {}
+          },
+          "c61a3e8618198afd2fc4": {
+            "singleVisual": {}
+          },
+          "cc78ba85d56b7d6dfba2": {
+            "singleVisual": {}
+          },
+          "ec4dfa7bae6aa2265782": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "f6134ab72128d194ca3c": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "c8a0b28b76d50fbbf3a8": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "848bf97aac86fc91621f",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "h",
+                    "Entity": "Health",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "h"
+                                }
+                              },
+                              "Property": "Gender"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Other'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Health"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "06af29eaf03f19ddb40c": {
+            "singleVisual": {}
+          },
+          "0b21382243b10049533e": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "0c251a1ae436a3b0593c": {
+            "singleVisual": {}
+          },
+          "11a15e1151581387ce7c": {
+            "singleVisual": {}
+          },
+          "1582cbb850d012251690": {
+            "singleVisual": {}
+          },
+          "3a9bbe25c0eb389cbc36": {
+            "singleVisual": {}
+          },
+          "3c4fb62b09987be45ca4": {
+            "singleVisual": {}
+          },
+          "41fb0532bc7272b7c026": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "48c126c1b2f02116e829": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "52ff4e0cd70e9d7a8225": {
+            "singleVisual": {}
+          },
+          "542a5ef1e60ae4e4ddf7": {
+            "singleVisual": {}
+          },
+          "55287aaa571ccdcc7821": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "5d0c72ce218409b2545d": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "5d29b4866154248cc0a9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ff8f18e01e898bc482fc",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Total Cases"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "60252379db53246acb8b": {
+            "singleVisual": {}
+          },
+          "602f190bb71d329d45ca": {
+            "singleVisual": {}
+          },
+          "6294316d6c1bc3e7e970": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Super - Death Share"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "648c453c8f7389039f56": {
+            "singleVisual": {}
+          },
+          "75530f126e1576b74a3a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6cb5f96394a8a90ed20e",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sq",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Est. deaths"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "sq"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "76c50875a8a5520fbd44": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Reported Records"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "78ff9cf9934c1acd87cf": {
+            "singleVisual": {}
+          },
+          "7aa1141855de4789dd8b": {
+            "singleVisual": {}
+          },
+          "83e6ff7699def5c82ef2": {
+            "singleVisual": {}
+          },
+          "8c426894ee984a719d86": {
+            "singleVisual": {}
+          },
+          "93a06c7e35663d2d915f": {
+            "singleVisual": {}
+          },
+          "95e353cee80425f3e794": {
+            "singleVisual": {}
+          },
+          "b681991b50c5d3f9973b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "516e809220b58be65242",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "be250703d4c735a475ca": {
+            "singleVisual": {}
+          },
+          "c6ec68925d9d8f25a5f2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bef051811a7060a98910",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCountry"
+                        }
+                      },
+                      "Property": "Avg Mortality Rate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {}
+          },
+          "e2511dfa455da6a7073c": {
+            "singleVisual": {}
+          },
+          "e49ef998484a36ce6231": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "ed0cd34c509afaf594f7": {
+            "singleVisual": {}
+          },
+          "f34b5c502363e2a75069": {
+            "singleVisual": {}
+          },
+          "fec5cfed94ba41677ab5": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "bookmarks": [
+                    {
+                      "properties": {
+                        "selectedBookmark": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'f7092cd0810d16acc43a'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "f0a69ea8cb4be76e7d42": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "36a385bc65dc6d99b449",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "h",
+                    "Entity": "Health",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "h"
+                                }
+                              },
+                              "Property": "Gender"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Female'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Health"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "012500f4b14dc4d28aa7": {
+            "singleVisual": {}
+          },
+          "156d9f2f1416969716ce": {
+            "singleVisual": {}
+          },
+          "17b8ac389df59b13f367": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "2618325e1919a60881cd": {
+            "singleVisual": {}
+          },
+          "2768805a4f9a18f07a21": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ff8f18e01e898bc482fc",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Total Cases"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e64c009bb45a3d0ca0cb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Total Cases"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "332407952565b88e74bc": {
+            "singleVisual": {}
+          },
+          "4271f0d3ae6cb708ee13": {
+            "singleVisual": {}
+          },
+          "4e4abbd520103acd6538": {
+            "singleVisual": {}
+          },
+          "5e42646342161602334c": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "6366f9acff48530d4371": {
+            "singleVisual": {}
+          },
+          "6d401563594f61c02eed": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "7a6e228f1d3cbf7398d4": {
+            "singleVisual": {}
+          },
+          "7d8f44a427bc1ec6d724": {
+            "singleVisual": {}
+          },
+          "7dda906628825196a64b": {
+            "singleVisual": {}
+          },
+          "885ff1a3b39e4f4e91a3": {
+            "singleVisual": {}
+          },
+          "939541de6002d6a59bfb": {
+            "singleVisual": {}
+          },
+          "93cafea3c9cc77b3b446": {
+            "singleVisual": {}
+          },
+          "a19ad64ed498203244c4": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Super - Death Share"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a2ab4d185b6c19518374": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "a49612a2b765628a98f0": {
+            "singleVisual": {}
+          },
+          "a4c169c189af73f26045": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "a4d3a49f4e9d77ce5ba8": {
+            "singleVisual": {}
+          },
+          "a5b0d734a26b672ca99a": {
+            "singleVisual": {}
+          },
+          "a9fa45aabd3b2185fa75": {
+            "singleVisual": {}
+          },
+          "ab973e3a1d605c926ece": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bbafb96d0e96951f694e",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sq",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "h",
+                                  "Entity": "Health",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "h"
+                                      }
+                                    },
+                                    "Property": "Disease Name"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "h"
+                                        }
+                                      },
+                                      "Property": "Est. deaths"
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 10
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "h",
+                        "Entity": "Health",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "h"
+                                    }
+                                  },
+                                  "Property": "Disease Name"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "sq"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Disease Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Est. deaths"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ad2d3d84dba872474fd2": {
+            "singleVisual": {}
+          },
+          "ad8235e8c962a8055224": {
+            "singleVisual": {}
+          },
+          "b886fe7e4091b484414c": {
+            "singleVisual": {}
+          },
+          "c5f5b352cb260add3984": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "cd9473c08b327d57b408": {
+            "singleVisual": {
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Health"
+                        }
+                      },
+                      "Property": "Reported Records"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f003ff87a4c2f2952dae": {
+            "singleVisual": {}
+          },
+          "fda1907e7d768e215c1b": {
+            "singleVisual": {
+              "objects": {
+                "remove": [
+                  {
+                    "object": "general",
+                    "property": "filter"
+                  }
+                ]
+              }
+            }
+          },
+          "fe922ed3fe5e2a6be2c2": {
+            "singleVisual": {}
+          },
+          "09c5ebf91f9616485da2": {
+            "singleVisual": {
+              "objects": {
+                "merge": {
+                  "bookmarks": [
+                    {
+                      "properties": {
+                        "selectedBookmark": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'ab00d93ca363a1ac09e3'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

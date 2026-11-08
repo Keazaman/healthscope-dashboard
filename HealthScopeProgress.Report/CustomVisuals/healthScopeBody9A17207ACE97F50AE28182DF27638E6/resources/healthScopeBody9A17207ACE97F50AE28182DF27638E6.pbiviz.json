@@ -1,0 +1,128 @@
+{
+  "visual": {
+    "name": "healthScopeBody",
+    "displayName": "HealthScope HTML Body",
+    "guid": "healthScopeBody9A17207ACE97F50AE28182DF27638E6",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "Local HTML and SVG human figures and a top-disease KPI, using filtered reported cases.",
+    "supportUrl": "https://learn.microsoft.com/power-bi/developer/visuals/",
+    "gitHubUrl": ""
+  },
+  "author": {
+    "name": "HealthScope project",
+    "email": ""
+  },
+  "apiVersion": "5.3.0",
+  "style": "style/visual.less",
+  "stringResources": {},
+  "capabilities": {
+    "privileges": [],
+    "dataRoles": [
+      {
+        "name": "disease",
+        "displayName": "Disease Name",
+        "kind": "Grouping"
+      },
+      {
+        "name": "cases",
+        "displayName": "Reported cases",
+        "kind": "Measure"
+      }
+    ],
+    "dataViewMappings": [
+      {
+        "conditions": [
+          {
+            "disease": {
+              "min": 1,
+              "max": 1
+            },
+            "cases": {
+              "max": 1
+            }
+          }
+        ],
+        "categorical": {
+          "categories": {
+            "for": {
+              "in": "disease"
+            },
+            "dataReductionAlgorithm": {
+              "top": {
+                "count": 1000
+              }
+            }
+          },
+          "values": {
+            "select": [
+              {
+                "bind": {
+                  "to": "cases"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "objects": {
+      "display": {
+        "displayName": "Display",
+        "properties": {
+          "mode": {
+            "displayName": "Mode",
+            "type": {
+              "enumeration": [
+                {
+                  "value": "figure",
+                  "displayName": "Human figure"
+                },
+                {
+                  "value": "kpi",
+                  "displayName": "Top-disease KPI"
+                }
+              ]
+            }
+          },
+          "gender": {
+            "displayName": "Figure",
+            "type": {
+              "enumeration": [
+                {
+                  "value": "Male",
+                  "displayName": "Male"
+                },
+                {
+                  "value": "Female",
+                  "displayName": "Female"
+                },
+                {
+                  "value": "Other",
+                  "displayName": "Neutral"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sorting": {
+      "default": {}
+    },
+    "supportsHighlight": false,
+    "supportsLandingPage": true,
+    "suppressDefaultTitle": true,
+    "supportsKeyboardFocus": true
+  },
+  "content": {
+    "js": "(function (global) {\n  'use strict';\n  var GUID = 'healthScopeBody9A17207ACE97F50AE28182DF27638E6';\n  var DISEASES = [\"Alzheimer's Disease\",'Asthma','COVID-19','Cancer','Cholera','Dengue','Diabetes','Ebola','HIV/AIDS','Hepatitis','Hypertension','Influenza','Leprosy','Malaria','Measles',\"Parkinson's Disease\",'Polio','Rabies','Tuberculosis','Zika'];\n  var COLORS = ['#4477AA','#228833','#EE6677','#AA3377','#66AADD','#CCBB44','#44AA99','#BB5566','#332288','#882255','#88CCEE','#117733','#DDCC77','#CC6677','#6699CC','#AA4499','#999933','#661100','#0077BB','#EE7733'];\n  var CSS = '.hs{font-family:Segoe UI,Arial,sans-serif;color:#142D38;box-sizing:border-box;height:100%;width:100%;padding:18px 20px;overflow:auto;background:white}.hs *{box-sizing:border-box}.hs h3{font-size:17px;line-height:1.25;margin:0 0 4px;font-weight:600}.hs p{font-size:11px;color:#64748B;margin:0 0 12px;line-height:1.4}.hs-grid{display:grid;grid-template-columns:160px minmax(0,1fr);gap:20px;align-items:start}.hs-body{width:100%;height:334px;display:block}.hs-legend{display:grid;grid-auto-flow:column;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px}.hs-item{display:grid;grid-template-columns:10px minmax(0,1fr) auto;column-gap:7px;align-items:start;padding:4px 3px;border:0;background:transparent;text-align:left;cursor:pointer;color:inherit;font:inherit;border-radius:4px;min-width:0}.hs-item:hover,.hs-item:focus-visible{background:#EAF3F5;outline:2px solid #8EBCC6}.hs-swatch{width:9px;height:9px;border-radius:2px;margin-top:4px}.hs-name{font-size:12px;line-height:16px;overflow-wrap:anywhere}.hs-case{display:block;color:#708194;font-size:10px;font-weight:400;line-height:13px}.hs-share{font-size:11px;white-space:nowrap;margin-top:1px}.hs-top .hs-name{font-weight:700}.hs-hint{font-size:10px;color:#64748B;line-height:1.4;margin-top:12px}.hs-clear{font:inherit;font-size:10px;border:1px solid #CCDCE4;padding:3px 8px;border-radius:4px;background:#F7FAFC;color:#344B5A;cursor:pointer;margin:4px 0 0}.hs-kpi{height:100%;padding:12px 18px;border-left:5px solid #167D8D;display:flex;flex-direction:column;justify-content:center;overflow:auto}.hs-kpi-label{font-size:11px;color:#526675;text-transform:uppercase;letter-spacing:.6px}.hs-kpi-name{font-size:27px;font-weight:600;line-height:1.2;margin:4px 0;overflow-wrap:anywhere}.hs-kpi-value{font-size:12px;color:#526675}.hs-empty{padding:24px;color:#526675;font-size:14px}.hs-empty strong{display:block;color:#142D38;margin-bottom:8px}@media(max-width:600px){.hs{padding:12px}.hs-grid{grid-template-columns:125px minmax(0,1fr);gap:10px}.hs-legend{grid-auto-flow:row;grid-template-columns:1fr;grid-template-rows:none!important}.hs-body{height:310px}.hs-kpi-name{font-size:22px}}';\n  function esc(x) { return String(x == null ? '' : x).replace(/[&<>\"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c];}); }\n  function fmt(n) { return Number(n).toLocaleString('en-US',{maximumFractionDigits:0}); }\n  function color(name) { var i=DISEASES.indexOf(name); if(i>=0)return COLORS[i];var h=0;for(var j=0;j<name.length;j++)h=(h*31+name.charCodeAt(j))>>>0;return 'hsl('+(h%360)+',55%,44%)'; }\n  function summarize(rows) {\n    var map=new Map();\n    rows.forEach(function(r,i){var name=String(r.name==null?'':r.name).trim();var value=Number(r.value);if(!name||!Number.isFinite(value)||value<=0)return;var old=map.get(name);if(old)old.value+=value;else map.set(name,{name:name,value:value,index:r.index==null?i:r.index});});\n    var sorted=Array.from(map.values()).sort(function(a,b){return b.value-a.value||(a.name<b.name?-1:a.name>b.name?1:0);});\n    var total=sorted.reduce(function(a,r){return a+r.value;},0),offset=0;\n    sorted.forEach(function(r,i){r.rank=i+1;r.share=r.value/total;r.start=offset;r.color=color(r.name);offset+=r.share;r.end=offset;});\n    var leaders=sorted.length?sorted.filter(function(r){return r.value===sorted[0].value;}):[];\n    return {rows:sorted,total:total,top:sorted[0]||null,ties:leaders.length};\n  }\n  function shapes(gender) {\n    var head=\"<circle cx='100' cy='29' r='24'/>\";\n    if(gender==='Female')return head+\"<rect x='72' y='62' width='56' height='72' rx='18'/><rect x='47' y='69' width='18' height='108' rx='9'/><rect x='135' y='69' width='18' height='108' rx='9'/><path d='M73 119 L127 119 L151 221 L49 221 Z'/><rect x='76' y='211' width='20' height='122' rx='10'/><rect x='104' y='211' width='20' height='122' rx='10'/>\";\n    if(gender==='Male')return head+\"<rect x='70' y='62' width='60' height='120' rx='18'/><rect x='45' y='69' width='18' height='124' rx='9'/><rect x='137' y='69' width='18' height='124' rx='9'/><rect x='72' y='169' width='23' height='164' rx='11'/><rect x='105' y='169' width='23' height='164' rx='11'/>\";\n    return head+\"<rect x='69' y='62' width='62' height='122' rx='22'/><rect x='44' y='70' width='18' height='122' rx='9'/><rect x='138' y='70' width='18' height='122' rx='9'/><rect x='72' y='171' width='23' height='162' rx='11'/><rect x='105' y='171' width='23' height='162' rx='11'/>\";\n  }\n  var sequence=0;\n  function figure(s,gender,instance) {\n    var id='hsBody'+String(instance||++sequence).replace(/[^A-Za-z0-9]/g,'');\n    var bands=s.rows.map(function(r){var tip=r.name+': '+fmt(r.value)+' reported cases ('+(r.share*100).toFixed(2)+'%)';return \"<rect x='0' y='\"+(r.start*340).toFixed(5)+\"' width='200' height='\"+((r.end-r.start)*340+.015).toFixed(5)+\"' fill='\"+r.color+\"' data-hs-index='\"+r.index+\"'><title>\"+esc(tip)+\"</title></rect>\";}).join('');\n    var legend=s.rows.map(function(r){return \"<button class='hs-item \"+(r.rank===1?'hs-top':'')+\"' data-hs-index='\"+r.index+\"' title='\"+esc(r.name+': '+fmt(r.value)+' reported cases')+\"'><span class='hs-swatch' style='background:\"+r.color+\"'></span><span class='hs-name'>\"+esc(r.name)+\"<span class='hs-case'>\"+fmt(r.value)+\"</span></span><span class='hs-share'>\"+(r.share*100).toFixed(1)+\"%</span></button>\";}).join('');\n    return \"<section class='hs'><h3>Disease mix · \"+esc(gender)+\"</h3><p>All diseases, ranked by reported cases in your current selection.</p><div class='hs-grid'><svg class='hs-body' viewBox='0 0 200 340' role='img' aria-label='\"+esc(gender)+\" figure showing disease shares'><defs><clipPath id='\"+id+\"'>\"+shapes(gender)+\"</clipPath></defs><g clip-path='url(#\"+id+\")'>\"+bands+\"</g><g fill='none' stroke='#45616F' stroke-width='1.2' pointer-events='none'>\"+shapes(gender)+\"</g></svg><div><div class='hs-legend' style='grid-template-rows:repeat(\"+Math.ceil(s.rows.length/2)+\",auto)'>\"+legend+\"</div></div></div><div class='hs-hint'>Colour-band height represents each disease's share of the selected reported cases, not an affected organ or body area. Totals can include repeat people across years or diseases.</div><button class='hs-clear' data-hs-clear='1'>Clear disease selection</button></section>\";\n  }\n  function kpi(s) {\n    var t=s.top;return \"<section class='hs hs-kpi' style='border-left-color:\"+t.color+\"'><div class='hs-kpi-label'>\"+(s.ties>1?'Joint highest reported cases · alphabetical tie-break':'Disease with highest reported cases')+\"</div><div class='hs-kpi-name'>\"+esc(t.name)+\"</div><div class='hs-kpi-value'>\"+fmt(t.value)+\" reported cases · \"+(t.share*100).toFixed(2)+\"% of this selection\"+(s.ties>1?' · '+s.ties+' tied diseases':'')+\"</div></section>\";\n  }\n  function render(s,gender,mode,instance) {return '<style>'+CSS+'</style>'+(!s.top?\"<div class='hs-empty'><strong>No reported cases</strong>Try a wider year range or clear another filter.</div>\":mode==='kpi'?kpi(s):figure(s,gender,instance));}\n  function Visual(options) {\n    this.root=options.element;this.host=options.host||{};this.selection=this.host.createSelectionManager?this.host.createSelectionManager():null;this.identity=[];this.instance=this.host.instanceId||++sequence;\n    var self=this;this.click=function(e){var target=e.target.closest&&e.target.closest('[data-hs-index],[data-hs-clear]');if(!target||!self.selection)return;if(target.hasAttribute('data-hs-clear'))self.selection.clear();else{var id=self.identity[Number(target.getAttribute('data-hs-index'))];if(id)self.selection.select(id,!!(e.ctrlKey||e.metaKey));}};this.root.addEventListener('click',this.click);\n  }\n  Visual.prototype.update=function(options) {\n    var ev=this.host.eventService;if(ev&&ev.renderingStarted)ev.renderingStarted(options);\n    try {\n      var dv=options.dataViews&&options.dataViews[0],cat=dv&&dv.categorical,category=cat&&cat.categories&&cat.categories[0],values=cat&&cat.values&&cat.values[0];\n      if(dv&&dv.metadata&&dv.metadata.segment){this.root.innerHTML='<style>'+CSS+\"</style><div class='hs-empty'><strong>Incomplete disease results</strong>The result is truncated. Reduce filters before interpreting the ranking.</div>\";return;}\n      var setting=dv&&dv.metadata&&dv.metadata.objects&&dv.metadata.objects.display||{};var mode=setting.mode||'figure',gender=setting.gender||'Other';\n      var self=this;this.identity=[];var rows=[];\n      if(category&&values)category.values.forEach(function(name,i){rows.push({name:name,value:values.values[i],index:i});if(self.host.createSelectionIdBuilder)self.identity[i]=self.host.createSelectionIdBuilder().withCategory(category,i).createSelectionId();});\n      this.root.innerHTML=render(summarize(rows),gender,mode,this.instance);this.root.style.width='100%';this.root.style.height='100%';\n    } catch(e) {this.root.innerHTML='<style>'+CSS+\"</style><div class='hs-empty'><strong>Unable to render the disease visual</strong>Check that Disease Name and Reported Population Affected are assigned.</div>\";if(ev&&ev.renderingFailed)ev.renderingFailed(options,String(e));}\n    finally {if(ev&&ev.renderingFinished)ev.renderingFinished(options);}\n  };\n  Visual.prototype.getFormattingModel=function(){return {cards:[]};};\n  Visual.prototype.destroy=function(){this.root.removeEventListener('click',this.click);};\n  var plugin={name:GUID,displayName:'HealthScope HTML Body',class:'Visual',apiVersion:'5.3.0',custom:true,create:function(o){return new Visual(o);}};\n  if(global.powerbi){global.powerbi.visuals=global.powerbi.visuals||{};global.powerbi.visuals.plugins=global.powerbi.visuals.plugins||{};global.powerbi.visuals.plugins[GUID]=plugin;}\n  global[GUID]={default:plugin};\n  global.HealthScopeBodyCore={summarize:summarize,render:render,shapes:shapes,color:color,Visual:Visual,diseases:DISEASES,colors:COLORS};\n})(typeof window!=='undefined'?window:globalThis);\n",
+    "css": "",
+    "iconBase64": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCc+PGNpcmNsZSBjeD0nMTInIGN5PSc0JyByPSczJyBmaWxsPScjMTY3RDhEJy8+PHBhdGggZD0nTTggOGg4djhoLTJ2N2gtM3YtN0g5djdINlY5eicgZmlsbD0nIzE2N0Q4RCcvPjwvc3ZnPg=="
+  },
+  "visualEntryPoint": "",
+  "externalJS": [],
+  "assets": {
+    "icon": "assets/icon.svg"
+  }
+}

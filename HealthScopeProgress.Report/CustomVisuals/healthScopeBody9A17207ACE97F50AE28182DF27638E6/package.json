@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0.0",
+  "author": {
+    "name": "HealthScope project",
+    "email": ""
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/healthScopeBody9A17207ACE97F50AE28182DF27638E6.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "guid": "healthScopeBody9A17207ACE97F50AE28182DF27638E6",
+    "name": "healthScopeBody",
+    "displayName": "HealthScope HTML Body",
+    "version": "1.0.0.0",
+    "description": "Local HTML and SVG human figures and a top-disease KPI, using filtered reported cases.",
+    "supportUrl": "https://learn.microsoft.com/power-bi/developer/visuals/",
+    "gitHubUrl": "",
+    "visualClassName": "Visual"
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}

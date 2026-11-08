@@ -1,0 +1,886 @@
+table Health
+	lineageTag: a3615657-1023-40da-bf51-d919ab81b95c
+
+	measure 'Record Count' = [Reported Records]
+		formatString: 0
+		lineageTag: 05d95244-3800-434b-99fd-74f680920129
+
+	measure 'Countries in Selection' =
+			
+			DISTINCTCOUNT('Health'[Country])
+		formatString: 0
+		lineageTag: b29bd4e5-0e92-40b4-ab65-40e3c96923e0
+
+	measure 'Reported Population Affected' =
+			
+			[Total Cases]
+		formatString: #,0.00
+		lineageTag: 0057e36e-5b32-4fd0-95d2-3c19efe7adeb
+
+	measure 'Reported Records' = COUNTROWS('Health')
+		formatString: #,0
+		lineageTag: 2f2c8f72-c505-461d-aaae-c04709c29e3a
+
+	measure 'Total Cases' = SUM('Health'[Population Affected])
+		formatString: #,0
+		lineageTag: 5aca3d9d-401a-4d67-9037-1630e984b118
+
+	measure 'Avg Affected per Record' = AVERAGE('Health'[Population Affected])
+		formatString: #,0.00
+		lineageTag: 672777a9-1ed4-4505-a5a6-ec38ea034520
+
+	measure 'Diff vs Avg' =
+			VAR DiseaseAverage = AVERAGEX(ALLSELECTED('Health'[Disease Name]), [Total Cases])
+			RETURN [Total Cases] - DiseaseAverage
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: b3c4294a-da20-41f2-a5a0-0ede48463dd3
+
+	measure 'Diff vs Avg %' =
+			VAR DiseaseAverage = AVERAGEX(ALLSELECTED('Health'[Disease Name]), [Total Cases])
+			RETURN DIVIDE([Diff vs Avg], DiseaseAverage)
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 0d978406-cad9-4ec2-8db0-7abd90074cbf
+
+	measure 'Est. deaths' = SUMX('Health', 'Health'[Population Affected] * DIVIDE('Health'[Mortality Rate (%)], 100))
+		displayFolder: Measure selector
+		lineageTag: 933a048e-c38d-52f1-8573-205276729e81
+
+		formatStringDefinition =
+				VAR ValueToFormat = ABS([Est. deaths])
+				RETURN SWITCH(TRUE(),
+				 ValueToFormat >= 1000000000, "#,0,,,.0""B""",
+				 ValueToFormat >= 1000000, "#,0,,.0""M""",
+				 ValueToFormat >= 1000, "#,0,.0""K""",
+				 "#,0")
+
+	measure 'Measure Title - Category' = SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Average prevalence", 1, "Average mortality", 2, "Average recovery", 3, "Average treatment cost", 4, "Total reported cases", 5, "Estimated deaths", 6, "Total DALYs") & " by disease category"
+		displayFolder: Measure selector/Titles
+		lineageTag: 45901f82-1dcb-5597-b820-81921beb4378
+
+	measure 'Measure Title - Country' = SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Average prevalence", 1, "Average mortality", 2, "Average recovery", 3, "Average treatment cost", 4, "Total reported cases", 5, "Estimated deaths", 6, "Total DALYs") & " by country"
+		displayFolder: Measure selector/Titles
+		lineageTag: d82cac16-41ab-5a17-ac17-b5d8b552a440
+
+	measure 'Measure Title - Map' = SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Average prevalence", 1, "Average mortality", 2, "Average recovery", 3, "Average treatment cost", 4, "Total reported cases", 5, "Estimated deaths", 6, "Total DALYs") & ": geographic view"
+		displayFolder: Measure selector/Titles
+		lineageTag: 6c38c5c9-c3f8-5642-810e-c40ee95217e9
+
+	measure 'Measure Title - Top 10' = "10 diseases with the highest " & LOWER(SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Average prevalence", 1, "Average mortality", 2, "Average recovery", 3, "Average treatment cost", 4, "Total reported cases", 5, "Estimated deaths", 6, "Total DALYs"))
+		displayFolder: Measure selector/Titles
+		lineageTag: fa518927-7606-5518-b986-6df109707131
+
+	measure 'Measure Title - Trend' = SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Average prevalence", 1, "Average mortality", 2, "Average recovery", 3, "Average treatment cost", 4, "Total reported cases", 5, "Estimated deaths", 6, "Total DALYs") & " over time"
+		displayFolder: Measure selector/Titles
+		lineageTag: d7cd20e9-64c7-5b68-87c6-c3977da6b2e2
+
+	measure 'Reported cases' = SUM('Health'[Population Affected])
+		displayFolder: Measure selector
+		lineageTag: 6cc4221b-facb-5193-a0e1-9e8116e39926
+
+		formatStringDefinition =
+				VAR ValueToFormat = ABS([Reported cases])
+				RETURN SWITCH(TRUE(),
+				 ValueToFormat >= 1000000000, "#,0,,,.0""B""",
+				 ValueToFormat >= 1000000, "#,0,,.0""M""",
+				 ValueToFormat >= 1000, "#,0,.0""K""",
+				 "#,0")
+
+	measure 'Selected Measure Value' =
+			SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1),
+			 0, 'DimCountry'[Avg Prevalence Rate],
+			 1, 'DimCountry'[Avg Mortality Rate],
+			 2, 'DimCountry'[Avg Recovery Rate],
+			 3, 'DimCountry'[Avg Treatment Cost USD],
+			 4, 'Health'[Reported cases],
+			 5, 'Health'[Est. deaths],
+			 6, 'Health'[Total DALYs])
+		displayFolder: Measure selector
+		lineageTag: 8e3d36e9-9542-5b63-a491-0fdc55ef3528
+
+		formatStringDefinition =
+				VAR SelectedIndex = SELECTEDVALUE('Measure'[Measure Order], 1)
+				RETURN SWITCH(TRUE(), SelectedIndex <= 2, "0.00%", SelectedIndex = 3, "$#,0",
+				VAR ValueToFormat = ABS([Selected Measure Value])
+				RETURN SWITCH(TRUE(),
+				 ValueToFormat >= 1000000000, "#,0,,,.0""B""",
+				 ValueToFormat >= 1000000, "#,0,,.0""M""",
+				 ValueToFormat >= 1000, "#,0,.0""K""",
+				 "#,0"))
+
+	measure 'Selected Treatment Value' =
+			SWITCH(SELECTEDVALUE('Treatment Measure'[Treatment Measure Order], 0),
+			 0, 'DimCountry'[Avg Treatment Cost USD],
+			 1, 'DimCountry'[Avg Recovery Rate])
+		displayFolder: Measure selector
+		lineageTag: 34b71ea5-4d98-51e9-a5d5-245b3a07e19c
+
+		formatStringDefinition = IF(SELECTEDVALUE('Treatment Measure'[Treatment Measure Order], 0) = 0, "$#,0", "0.00%")
+
+	measure 'Total DALYs' = SUM('Health'[DALYs])
+		displayFolder: Measure selector
+		lineageTag: 8c8f70e4-0ded-5d04-8912-ab41770e3c86
+
+		formatStringDefinition =
+				VAR ValueToFormat = ABS([Total DALYs])
+				RETURN SWITCH(TRUE(),
+				 ValueToFormat >= 1000000000, "#,0,,,.0""B""",
+				 ValueToFormat >= 1000000, "#,0,,.0""M""",
+				 ValueToFormat >= 1000, "#,0,.0""K""",
+				 "#,0")
+
+	measure 'Treatment Title - Top 10' = IF(SELECTEDVALUE('Treatment Measure'[Treatment Measure Order], 0) = 0, "10 diseases with the highest average treatment cost", "10 diseases with the highest average recovery")
+		displayFolder: Measure selector/Titles
+		lineageTag: 29e3d7a5-b5e4-5f83-a2d5-c5bcd889184b
+
+	measure 'Super - Disease Color' = COALESCE(LOOKUPVALUE('Entity Colours'[Hex], 'Entity Colours'[Entity Type], "Disease Name", 'Entity Colours'[Entity Name], SELECTEDVALUE('Health'[Disease Name])), "#A6E85B")
+		displayFolder: ExplorerSuper
+		lineageTag: 151d2d51-df64-5536-be55-698ec463cb66
+
+	measure 'Super - Availability' = DIVIDE(CALCULATE([Reported Records], 'Health'[Availability of Vaccines/Treatment] = "Yes"), [Reported Records])
+		formatString: 0.0%
+		displayFolder: ExplorerSuper
+		lineageTag: 26a13f2d-4cf1-5eb7-983d-79b5a81065a0
+
+	measure 'Super - Death Share' = DIVIDE([Est. deaths], CALCULATE([Est. deaths], REMOVEFILTERS('Health'[Age Group])))
+		formatString: 0.0%
+		displayFolder: ExplorerSuper
+		lineageTag: 967e4a0a-f00b-555e-9a86-d917a7668a18
+
+	measure 'Super - Hero HTML' =
+			VAR Y0 = MIN('Health'[Year])
+			VAR Y1 = MAX('Health'[Year])
+			VAR CountryLabel = SELECTEDVALUE('DimCountry'[Country], "Global")
+			VAR CountryCount = DISTINCTCOUNT('Health'[Country])
+			RETURN "<div class='hero'><div class='chips2'><span class='chip2'>" & FORMAT(Y0,"0") & IF(Y0=Y1,"","–" & FORMAT(Y1,"0")) & "</span><span class='chip2'>" & IF(CountryCount=1,SELECTEDVALUE('Health'[Country]),FORMAT(CountryCount,"0") & " countries") & "</span></div><h1 class='big'>" & IF(CountryCount=1,SELECTEDVALUE('Health'[Country]) & " health picture","Global health overview") & "</h1><div class='hmeta'>◎ &nbsp; Dataset · " & FORMAT([Reported Records],"#,0") & " records in view</div></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: bf52a234-4df2-5313-a425-82c44f44c35a
+
+	measure 'Super - KPI Tiles HTML' =
+			VAR Y0 = MIN('Health'[Year])
+			VAR Y1 = MAX('Health'[Year])
+			VAR T0 = ADDCOLUMNS(VALUES('Health'[Year]), "V", CALCULATE([Reported Records]))
+			VAR T0Min = MINX(T0,[V])
+			VAR T0Max = MAXX(T0,[V])
+			VAR T0Delta = DIVIDE(MAXX(FILTER(T0,'Health'[Year]=Y1),[V])-MAXX(FILTER(T0,'Health'[Year]=Y0),[V]),ABS(MAXX(FILTER(T0,'Health'[Year]=Y0),[V])))
+			VAR T0HTML = "<div class='tile'><div class='tl'>Records<span class='chipd " & IF(T0Delta >= 0,"","bad") & "'>" & FORMAT(T0Delta,"+0.0%;-0.0%;0.0%") & "</span></div><div class='tv'>" & SWITCH(TRUE(), [Reported Records]>=1000000,FORMAT([Reported Records],"0,,.0") & "M",[Reported Records]>=1000,FORMAT([Reported Records],"0,.0") & "K",FORMAT([Reported Records],"#,0")) & "</div><svg class='sp' viewBox='0 0 160 34' width='100%' height='34' preserveAspectRatio='none'><polyline points='" & CONCATENATEX(T0, FORMAT(DIVIDE('Health'[Year] - Y0, MAX(1,Y1-Y0))*160,"0.0","en-US") & "," & FORMAT(31-DIVIDE([V]-T0Min,MAX(0.0000001,T0Max-T0Min))*26,"0.0","en-US"), " ", 'Health'[Year], ASC) & "' fill='none' stroke='#a6e85b' stroke-width='2' vector-effect='non-scaling-stroke'/></svg></div>"
+			VAR T1 = ADDCOLUMNS(VALUES('Health'[Year]), "V", CALCULATE('DimCountry'[Avg Prevalence Rate]))
+			VAR T1Min = MINX(T1,[V])
+			VAR T1Max = MAXX(T1,[V])
+			VAR T1Delta = DIVIDE(MAXX(FILTER(T1,'Health'[Year]=Y1),[V])-MAXX(FILTER(T1,'Health'[Year]=Y0),[V]),ABS(MAXX(FILTER(T1,'Health'[Year]=Y0),[V])))
+			VAR T1HTML = "<div class='tile'><div class='tl'>Prevalence<span class='chipd " & IF(T1Delta <= 0,"","bad") & "'>" & FORMAT(T1Delta,"+0.0%;-0.0%;0.0%") & "</span></div><div class='tv'>" & FORMAT('DimCountry'[Avg Prevalence Rate],"0.00%") & "</div><svg class='sp' viewBox='0 0 160 34' width='100%' height='34' preserveAspectRatio='none'><polyline points='" & CONCATENATEX(T1, FORMAT(DIVIDE('Health'[Year] - Y0, MAX(1,Y1-Y0))*160,"0.0","en-US") & "," & FORMAT(31-DIVIDE([V]-T1Min,MAX(0.0000001,T1Max-T1Min))*26,"0.0","en-US"), " ", 'Health'[Year], ASC) & "' fill='none' stroke='#f2b84b' stroke-width='2' vector-effect='non-scaling-stroke'/></svg></div>"
+			VAR T2 = ADDCOLUMNS(VALUES('Health'[Year]), "V", CALCULATE('DimCountry'[Avg Mortality Rate]))
+			VAR T2Min = MINX(T2,[V])
+			VAR T2Max = MAXX(T2,[V])
+			VAR T2Delta = DIVIDE(MAXX(FILTER(T2,'Health'[Year]=Y1),[V])-MAXX(FILTER(T2,'Health'[Year]=Y0),[V]),ABS(MAXX(FILTER(T2,'Health'[Year]=Y0),[V])))
+			VAR T2HTML = "<div class='tile'><div class='tl'>Mortality<span class='chipd " & IF(T2Delta <= 0,"","bad") & "'>" & FORMAT(T2Delta,"+0.0%;-0.0%;0.0%") & "</span></div><div class='tv'>" & FORMAT('DimCountry'[Avg Mortality Rate],"0.00%") & "</div><svg class='sp' viewBox='0 0 160 34' width='100%' height='34' preserveAspectRatio='none'><polyline points='" & CONCATENATEX(T2, FORMAT(DIVIDE('Health'[Year] - Y0, MAX(1,Y1-Y0))*160,"0.0","en-US") & "," & FORMAT(31-DIVIDE([V]-T2Min,MAX(0.0000001,T2Max-T2Min))*26,"0.0","en-US"), " ", 'Health'[Year], ASC) & "' fill='none' stroke='#ff7a66' stroke-width='2' vector-effect='non-scaling-stroke'/></svg></div>"
+			VAR T3 = ADDCOLUMNS(VALUES('Health'[Year]), "V", CALCULATE('DimCountry'[Avg Recovery Rate]))
+			VAR T3Min = MINX(T3,[V])
+			VAR T3Max = MAXX(T3,[V])
+			VAR T3Delta = DIVIDE(MAXX(FILTER(T3,'Health'[Year]=Y1),[V])-MAXX(FILTER(T3,'Health'[Year]=Y0),[V]),ABS(MAXX(FILTER(T3,'Health'[Year]=Y0),[V])))
+			VAR T3HTML = "<div class='tile'><div class='tl'>Recovery<span class='chipd " & IF(T3Delta >= 0,"","bad") & "'>" & FORMAT(T3Delta,"+0.0%;-0.0%;0.0%") & "</span></div><div class='tv'>" & FORMAT('DimCountry'[Avg Recovery Rate],"0.0%") & "</div><svg class='sp' viewBox='0 0 160 34' width='100%' height='34' preserveAspectRatio='none'><polyline points='" & CONCATENATEX(T3, FORMAT(DIVIDE('Health'[Year] - Y0, MAX(1,Y1-Y0))*160,"0.0","en-US") & "," & FORMAT(31-DIVIDE([V]-T3Min,MAX(0.0000001,T3Max-T3Min))*26,"0.0","en-US"), " ", 'Health'[Year], ASC) & "' fill='none' stroke='#a6e85b' stroke-width='2' vector-effect='non-scaling-stroke'/></svg></div>"
+			VAR AccessHTML = "<div class='tile'><div class='tl'>Healthcare access</div><div class='tv'>" & FORMAT('DimCountry'[Avg Healthcare Access],"0.0%") & "</div><div class='segs'>" & CONCATENATEX(GENERATESERIES(1,12),"<span class='" & IF([Value]<=ROUND(('DimCountry'[Avg Healthcare Access])*12,0),"on","") & "'></span>","") & "</div></div>"
+			VAR AvailabilityHTML = "<div class='tile'><div class='tl'>Treatment availability</div><div class='tv'>" & FORMAT([Super - Availability],"0.0%") & "</div><div class='segs'>" & CONCATENATEX(GENERATESERIES(1,12),"<span class='" & IF([Value]<=ROUND(([Super - Availability])*12,0),"on","") & "'></span>","") & "</div></div>"
+			RETURN "<div class='tiles'>" & T0HTML & T1HTML & T2HTML & T3HTML & AccessHTML & AvailabilityHTML & "</div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 8b139607-2f28-582b-9de9-079efef900b7
+
+	measure 'Super - Country Tile HTML' =
+			VAR Country = SELECTEDVALUE('Health'[Country])
+			VAR X = SWITCH(Country, "Canada", 1, "USA", 1, "Mexico", 1, "Brazil", 2, "Argentina", 2, "UK", 4, "France", 4, "Germany", 5, "Italy", 5, "Russia", 7, "Turkey", 6, "Nigeria", 5, "South Africa", 6, "Saudi Arabia", 7, "India", 8, "China", 9, "Japan", 11, "South Korea", 10, "Indonesia", 9, "Australia", 10, 0)
+			VAR Y = SWITCH(Country, "Canada", 0, "USA", 1, "Mexico", 2, "Brazil", 3, "Argentina", 4, "UK", 0, "France", 1, "Germany", 0, "Italy", 1, "Russia", 0, "Turkey", 1, "Nigeria", 3, "South Africa", 4, "Saudi Arabia", 2, "India", 2, "China", 1, "Japan", 1, "South Korea", 2, "Indonesia", 3, "Australia", 4, 0)
+			VAR ISO = SWITCH(Country, "Canada", "CAN", "USA", "USA", "Mexico", "MEX", "Brazil", "BRA", "Argentina", "ARG", "UK", "GBR", "France", "FRA", "Germany", "DEU", "Italy", "ITA", "Russia", "RUS", "Turkey", "TUR", "Nigeria", "NGA", "South Africa", "ZAF", "Saudi Arabia", "SAU", "India", "IND", "China", "CHN", "Japan", "JPN", "South Korea", "KOR", "Indonesia", "IDN", "Australia", "AUS", "")
+			VAR RankCountry = RANKX(ALLSELECTED('Health'[Country]), CALCULATE('DimCountry'[Avg Mortality Rate]), , ASC, DENSE)
+			VAR CountCountry = COUNTROWS(ALLSELECTED('Health'[Country]))
+			VAR Fraction = DIVIDE(RankCountry-1,MAX(1,CountCountry-1))
+			VAR Color = SWITCH(TRUE(),Fraction < 0.34,"#a6e85b",Fraction < 0.67,"#f2b84b","#ff7a66")
+			RETURN "<div class='countrytile' style='left:" & FORMAT(X/12*100,"0.00","en-US") & "%;top:" & FORMAT(56+Y*46,"0","en-US") & "px' title='" & Country & ": " & FORMAT('DimCountry'[Avg Mortality Rate],"0.00%") & " average mortality'><svg viewBox='0 0 40 46' width='32' height='38'><polygon points='20,1 39,12 39,34 20,45 1,34 1,12' fill='" & Color & "' fill-opacity='.88' stroke='rgba(255,255,255,.25)'/><text x='20' y='26' text-anchor='middle' style='font:700 10px Segoe UI;fill:#0b1a10'>" & ISO & "</text></svg></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: b8a50699-cd65-5c45-9a5b-16de6c2f7e72
+
+	measure 'Super - Watch Row HTML' =
+			VAR Disease = SELECTEDVALUE('Health'[Disease Name])
+			VAR Category = SELECTEDVALUE('Health'[Disease Category])
+			VAR Mortality = 'DimCountry'[Avg Mortality Rate]
+			VAR Largest = MAXX(ALLSELECTED('Health'[Disease Name]), CALCULATE('DimCountry'[Avg Mortality Rate]))
+			VAR Color = [Super - Disease Color]
+			VAR WatchStatus = SWITCH(TRUE(),Mortality>=0.1,"At risk",Mortality>=0.02,"Warning","Healthy")
+			VAR StatusClass = SWITCH(TRUE(),Mortality>=0.1,"risk",Mortality>=0.02,"warn","ok")
+			RETURN "<div class='wrow'><div class='dot' style='background:" & Color & "'>" & UPPER(LEFT(Disease,2)) & "</div><div class='wn'>" & Disease & "</div><div class='wv'>" & FORMAT(Mortality,"0.00%") & "</div><div class='ws'>" & Category & "</div><span class='st " & StatusClass & "'>" & WatchStatus & "</span><div class='bar2'><b style='width:" & FORMAT(DIVIDE(Mortality,Largest)*100,"0.0","en-US") & "%;background:" & Color & "'></b></div></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 8d0f4f11-b66c-5e64-b640-e26943dafca6
+
+	measure 'Super - Insight HTML' =
+			VAR Country = SELECTEDVALUE('Health'[Country],"Current selection")
+			VAR Diseases = ADDCOLUMNS(VALUES('Health'[Disease Name]),"Deaths",CALCULATE([Est. deaths]))
+			VAR TopDisease = TOPN(1,Diseases,[Deaths],DESC,'Health'[Disease Name],ASC)
+			VAR Disease = CONCATENATEX(TopDisease,'Health'[Disease Name],"")
+			VAR Deaths = SUMX(TopDisease,[Deaths])
+			VAR ByYear = ADDCOLUMNS(VALUES('Health'[Year]),"Deaths",CALCULATE([Est. deaths],REMOVEFILTERS('Health'[Country])))
+			VAR Peak = TOPN(1,ByYear,[Deaths],DESC,'Health'[Year],DESC)
+			VAR PeakYear = MAXX(Peak,'Health'[Year])
+			VAR PeakDeaths = SUMX(Peak,[Deaths])
+			VAR MedianDeaths = MEDIANX(ByYear,[Deaths])
+			RETURN "<div class='ai'><svg class='art' viewBox='0 0 300 120'><g fill='none' stroke='rgba(255,255,255,.45)' stroke-width='1.2'><circle cx='150' cy='150' r='110'/><ellipse cx='150' cy='150' rx='55' ry='110'/><ellipse cx='150' cy='150' rx='110' ry='40'/></g><polyline points='0,70 90,70 105,40 120,100 138,55 150,70 300,70' fill='none' stroke='#fff' stroke-width='2.2'/></svg><div class='ph'><span class='pill on'>Insight</span></div><h3>" & Country & " has the lowest healthcare access</h3><p>Average access is " & FORMAT('DimCountry'[Avg Healthcare Access],"0.0%") & ". Its largest estimated-death disease is " & Disease & " (" & FORMAT(Deaths,"0,,.0") & "M).</p><div class='facts'><div class='fact'>Peak year: <b>" & FORMAT(PeakYear,"0") & "</b> · " & FORMAT(PeakDeaths,"0,,.0") & "M estimated deaths (" & FORMAT(DIVIDE(PeakDeaths,MedianDeaths),"0.00") & "× the median year)</div></div><div class='acts'><span class='act'>Focus on " & Country & "</span><span class='act alt'>Peak: " & FORMAT(PeakYear,"0") & "</span></div><div class='note'>Rule-based summary of the current filters, not a model prediction. Select this card to focus on the country.</div></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 79a5121e-d872-5d12-b2d5-54d1927e9fbd
+
+	measure 'Super - Death Readout HTML' =
+			VAR LastYear = MAX('Health'[Year])
+			VAR Deaths = CALCULATE([Est. deaths], KEEPFILTERS('Health'[Year]=LastYear))
+			RETURN "<div class='readout'><span class='rl'>" & FORMAT(LastYear,"0") & " · estimated deaths</span><span class='rv'>" & SWITCH(TRUE(),Deaths>=1000000,FORMAT(Deaths,"0,,.0") & "M",Deaths>=1000,FORMAT(Deaths,"0,.0") & "K",FORMAT(Deaths,"#,0")) & "</span></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 998ebf6c-6245-5ed2-b949-c51ed70dc425
+
+	measure 'Super - Year Bar Color' = IF(SELECTEDVALUE('Health'[Year]) = MAXX(ALLSELECTED('Health'[Year]),'Health'[Year]),"#a6e85b","#355f46")
+		displayFolder: ExplorerSuper
+		lineageTag: 0f2c8869-1241-535a-8331-3cfa473054d1
+
+	measure 'Super - Top Disease HTML' =
+			VAR Diseases = ADDCOLUMNS(VALUES('Health'[Disease Name]),"Cases",CALCULATE([Total Cases]))
+			VAR TopDisease = TOPN(1,Diseases,[Cases],DESC,'Health'[Disease Name],ASC)
+			RETURN "<div class='topd'><div class='e'>Disease with highest reported cases</div><div class='n'>" & CONCATENATEX(TopDisease,'Health'[Disease Name],"") & "</div><div class='s'>" & FORMAT(SUMX(TopDisease,[Cases]),"#,0") & " reported cases · " & FORMAT(DIVIDE(SUMX(TopDisease,[Cases]),SUMX(Diseases,[Cases])),"0.00%") & " of this selection</div></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 888d7889-6316-54f1-9926-2ee4ad2d34f0
+
+	measure 'Super - Disease Mix HTML' =
+			VAR GenderName = SELECTEDVALUE('Health'[Gender],"All genders")
+			VAR Diseases = ADDCOLUMNS(VALUES('Health'[Disease Name]),"Cases",CALCULATE([Total Cases]))
+			VAR Ranked = ADDCOLUMNS(Diseases,"Rank",RANKX(Diseases,[Cases],,DESC,DENSE))
+			VAR TotalCases = SUMX(Diseases,[Cases])
+			VAR BodyPath = IF(GenderName="Female","M48 55 L72 55 Q85 55 89 70 L105 130 Q108 143 98 147 Q89 149 85 136 L79 112 L95 207 L76 207 L76 282 Q76 298 64 298 Q55 298 55 282 L55 210 L53 210 L53 282 Q53 298 42 298 Q32 298 32 282 L32 207 L14 207 L33 112 L25 136 Q20 150 10 145 Q1 140 7 126 L25 70 Q31 55 48 55 Z","M42 55 L72 55 Q87 55 91 70 L108 132 Q111 145 100 148 Q89 150 86 137 L78 106 L78 282 Q78 299 66 299 Q54 299 54 282 L54 183 L50 183 L50 282 Q50 299 38 299 Q26 299 26 282 L26 106 L18 137 Q14 151 4 146 Q-5 142 0 128 L18 70 Q23 55 42 55 Z")
+			VAR Slices = CONCATENATEX(Ranked,VAR R=[Rank] VAR Color=[Super - Disease Color] VAR BeforeCases=SUMX(FILTER(Ranked,[Rank]<R),[Cases]) RETURN "<rect x='0' y='" & FORMAT(DIVIDE(BeforeCases,TotalCases)*305,"0.00","en-US") & "' width='120' height='" & FORMAT(DIVIDE([Cases],TotalCases)*305+0.4,"0.00","en-US") & "' fill='" & Color & "'/>","",[Rank],ASC)
+			VAR PageCount = ROUNDUP(COUNTROWS(Diseases)/8,0)
+			VAR MixPages = CONCATENATEX(GENERATESERIES(0,MAX(0,PageCount-1)),VAR P=[Value] RETURN "<div class='pg' id='mix-page-" & FORMAT(P,"0") & "'>" & CONCATENATEX(FILTER(Ranked,[Rank]>P*8 && [Rank]<=P*8+8),VAR R=[Rank] VAR Color=[Super - Disease Color] RETURN "<div class='it'><i style='background:" & Color & "'></i><b>" & 'Health'[Disease Name] & "</b><span>" & FORMAT(DIVIDE([Cases],TotalCases),"0.0%") & "</span><small>" & FORMAT([Cases],"#,0") & " reported cases</small></div>","",[Rank],ASC) & "</div>","",[Value],ASC)
+			RETURN "<div class='mix-panel'><h2>Disease mix · " & GenderName & "</h2><p class='sub'>All diseases, ranked by reported cases in your current selection.</p><div class='mix'><svg class='bodyfig' viewBox='0 0 120 310' width='150' height='330'><defs><clipPath id='mix-body'><circle cx='54' cy='26' r='24'/><path d='" & BodyPath & "'/></clipPath></defs><g clip-path='url(#mix-body)'>" & Slices & "</g></svg><div class='mixwrap'><div class='pager'><div class='track'>" & MixPages & "</div></div><div class='pnav'><span>‹ Swipe or scroll to explore ›</span><span>" & FORMAT(COUNTROWS(Diseases),"0") & " diseases · " & FORMAT(PageCount,"0") & " panels</span></div></div></div></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 34513de7-954e-532b-b35b-092d2b71f057
+
+	measure 'Super - Country Race HTML' =
+			VAR Years = VALUES('Health'[Year])
+			VAR Countries = VALUES('Health'[Country])
+			VAR Grid = ADDCOLUMNS(CROSSJOIN(Years,Countries),"V",CALCULATE([Selected Measure Value]))
+			VAR MaximumValue = MAXX(Grid,[V])
+			VAR YearCount = COUNTROWS(Years)
+			VAR Duration = MAX(1,YearCount)*1.5
+			VAR IndexMeasure = SELECTEDVALUE('Measure'[Measure Order],1)
+			VAR RowsHTML = CONCATENATEX(Countries,
+			 VAR Country='Health'[Country]
+			 VAR CountryColor=[Super - Country Color]
+			 VAR CI=RANKX(Countries,'Health'[Country],,ASC,DENSE)
+			 VAR CountryGrid=FILTER(Grid,'Health'[Country]=Country)
+			 VAR Frames=CONCATENATEX(CountryGrid,
+			  VAR Y='Health'[Year]
+			  VAR V=[V]
+			  VAR YI=RANKX(Years,'Health'[Year],Y,ASC,DENSE)-1
+			  VAR RankYear=RANKX(FILTER(Grid,'Health'[Year]=Y),[V],V,DESC,DENSE)-1
+			  VAR P=FORMAT(DIVIDE(YI,YearCount)*100,"0.00","en-US")
+			  VAR Q=FORMAT(DIVIDE(YI+0.9,YearCount)*100,"0.00","en-US")
+			  RETURN P & "%," & Q & "%{transform:translateY(" & FORMAT(RankYear*28,"0") & "px);opacity:" & IF(RankYear<10,"1","0") & ";}","",'Health'[Year],ASC)
+			 VAR BarFrames=CONCATENATEX(CountryGrid,
+			  VAR Y='Health'[Year] VAR V=[V] VAR YI=RANKX(Years,'Health'[Year],Y,ASC,DENSE)-1
+			  RETURN FORMAT(DIVIDE(YI,YearCount)*100,"0.00","en-US") & "%," & FORMAT(DIVIDE(YI+0.9,YearCount)*100,"0.00","en-US") & "%{width:" & FORMAT(DIVIDE(V,MaximumValue)*100,"0.00","en-US") & "%;}","",'Health'[Year],ASC)
+			 VAR ValueFrames=CONCATENATEX(CountryGrid,
+			  VAR Y='Health'[Year] VAR V=[V] VAR YI=RANKX(Years,'Health'[Year],Y,ASC,DENSE)-1
+			  VAR ValueCaption=SWITCH(TRUE(),IndexMeasure<=2,FORMAT(V,"0.00%"),IndexMeasure=3,FORMAT(V,"$#,0"),V>=1000000,FORMAT(V,"0,,.0") & "M",V>=1000,FORMAT(V,"0,.0") & "K",FORMAT(V,"#,0"))
+			  RETURN FORMAT(DIVIDE(YI,YearCount)*100,"0.00","en-US") & "%," & FORMAT(DIVIDE(YI+0.9,YearCount)*100,"0.00","en-US") & "%{content:'" & ValueCaption & "';}","",'Health'[Year],ASC)
+			 RETURN "<style>@keyframes r" & CI & "{" & Frames & "}@keyframes b" & CI & "{" & BarFrames & "}@keyframes v" & CI & "{" & ValueFrames & "}.race-row.c" & CI & "{animation-name:r" & CI & ";}.c" & CI & " .race-bar{animation-name:b" & CI & ";}.c" & CI & " .race-value:after{animation-name:v" & CI & ";}</style><div class='race-row c" & CI & "'><span class='race-name'>" & Country & "</span><span class='race-track'><b class='race-bar' style='background:" & CountryColor & "'></b></span><span class='race-value'></span></div>","",'Health'[Country],ASC)
+			VAR YearFrames = CONCATENATEX(Years,VAR Y='Health'[Year] VAR I=RANKX(Years,'Health'[Year],Y,ASC,DENSE)-1 RETURN FORMAT(DIVIDE(I,YearCount)*100,"0.00","en-US") & "%," & FORMAT(DIVIDE(I+0.9,YearCount)*100,"0.00","en-US") & "%{content:'" & FORMAT(Y,"0") & "';}","",'Health'[Year],ASC)
+			RETURN "<style>.race-row,.race-bar,.race-value:after,.race-year:after{animation-duration:" & FORMAT(Duration,"0.0","en-US") & "s;animation-iteration-count:infinite;animation-timing-function:linear;animation-play-state:paused;}@keyframes raceyear{" & YearFrames & "}.race-year:after{animation-name:raceyear;}#raceplay:checked~.race .race-row,#raceplay:checked~.race .race-bar,#raceplay:checked~.race .race-value:after,#raceplay:checked~.race .race-year:after{animation-play-state:running;}</style><div class='race-panel'><h2>Country ranking by year</h2><p class='sub'>Play to watch the ten leading countries change places. Uses the selected measure and filters.</p><input type='checkbox' id='raceplay' hidden><label class='race-play' for='raceplay'>▶ / Ⅱ Play or pause</label><div class='race'>" & RowsHTML & "<span class='race-year'></span></div></div>"
+		displayFolder: ExplorerSuper
+		lineageTag: 8a6d337b-b94c-50f1-9ce5-04defd12eee1
+
+	measure 'Super - Country Color' = COALESCE(LOOKUPVALUE('Entity Colours'[Hex], 'Entity Colours'[Entity Type], "Country", 'Entity Colours'[Entity Name], COALESCE(SELECTEDVALUE('DimCountry'[Country]), SELECTEDVALUE('Health'[Country]))), "#A6E85B")
+		displayFolder: ExplorerSuper
+		lineageTag: 259fb2c2-836d-4860-97bf-8a9b57a21f57
+
+	measure 'Super - Disease Category Color' = COALESCE(LOOKUPVALUE('Entity Colours'[Hex], 'Entity Colours'[Entity Type], "Disease Category", 'Entity Colours'[Entity Name], SELECTEDVALUE('Health'[Disease Category])), "#FFFFFF")
+		isHidden
+		displayFolder: ExplorerSuper
+		lineageTag: afe2a855-7a21-41dd-9aef-b963664068c1
+
+	measure 'Super - Treatment Type Color' = LOOKUPVALUE('Entity Colours'[Hex], 'Entity Colours'[Entity Type], "Treatment Type", 'Entity Colours'[Entity Name], SELECTEDVALUE('Health'[Treatment Type]))
+		isHidden
+		displayFolder: ExplorerSuper
+		lineageTag: 0a2fde14-a2c9-4fb2-b52e-f69a79efd61d
+
+	measure 'Super - Availability Color' = LOOKUPVALUE('Entity Colours'[Hex], 'Entity Colours'[Entity Type], "Availability of Vaccines/Treatment", 'Entity Colours'[Entity Name], SELECTEDVALUE('Health'[Availability of Vaccines/Treatment]))
+		isHidden
+		displayFolder: ExplorerSuper
+		lineageTag: 977a635c-c6aa-4fcd-992d-f2883d9827f1
+
+	measure 'Super - Age Group Color' = LOOKUPVALUE('Entity Colours'[Hex], 'Entity Colours'[Entity Type], "Age Group", 'Entity Colours'[Entity Name], SELECTEDVALUE('Health'[Age Group]))
+		isHidden
+		displayFolder: ExplorerSuper
+		lineageTag: 96840085-82f1-4d33-8072-7a461fcd9efb
+
+	measure 'Measure Title - Top 5 diseases' = "Top 5 diseases: " & SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Prevalence", 1, "Mortality", 2, "Recovery", 3, "Treatment cost", 4, "Reported cases", 5, "Est. deaths", 6, "DALYs") & " over time"
+		isHidden
+		displayFolder: Measure selector/Titles
+		lineageTag: 44a57de8-c707-46fe-a549-ce2221630884
+
+	measure 'Measure Title - Top 5 countries' = "Top 5 countries: " & SWITCH(SELECTEDVALUE('Measure'[Measure Order], 1), 0, "Prevalence", 1, "Mortality", 2, "Recovery", 3, "Treatment cost", 4, "Reported cases", 5, "Est. deaths", 6, "DALYs") & " over time"
+		isHidden
+		displayFolder: Measure selector/Titles
+		lineageTag: b1135de3-4184-4125-8125-d52b5aeff85f
+
+	measure 'Trend Rank - Country' =
+			VAR CurrentName = SELECTEDVALUE('DimCountry'[Country])
+			VAR CurrentScore = [Selected Measure Value]
+			VAR Candidates =
+			    ADDCOLUMNS(ALLSELECTED('DimCountry'[Country]), "@Score", [Selected Measure Value])
+			RETURN
+			    IF(ISBLANK(CurrentName) || ISBLANK(CurrentScore), 1000000,
+			        1 + COUNTROWS(
+			            FILTER(Candidates, NOT ISBLANK([@Score]) &&
+			                ([@Score] > CurrentScore || ([@Score] = CurrentScore && 'DimCountry'[Country] < CurrentName)))))
+		isHidden
+		displayFolder: Measure selector
+		lineageTag: 900856f7-4a42-4f7c-a58f-ca9c12e74d9e
+
+	measure 'Trend Rank - Disease Name' =
+			VAR CurrentName = SELECTEDVALUE('Health'[Disease Name])
+			VAR CurrentScore = [Selected Measure Value]
+			VAR Candidates =
+			    ADDCOLUMNS(ALLSELECTED('Health'[Disease Name]), "@Score", [Selected Measure Value])
+			RETURN
+			    IF(ISBLANK(CurrentName) || ISBLANK(CurrentScore), 1000000,
+			        1 + COUNTROWS(
+			            FILTER(Candidates, NOT ISBLANK([@Score]) &&
+			                ([@Score] > CurrentScore || ([@Score] = CurrentScore && 'Health'[Disease Name] < CurrentName)))))
+		isHidden
+		displayFolder: Measure selector
+		lineageTag: 127f32a6-0697-473f-9903-aa9bf22c3d11
+
+	measure 'Scatter Verdict - Disease mortality' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('Health'[Disease Name]), "@X", 'DimCountry'[Avg Mortality Rate], "@Y", 'DimCountry'[Avg Recovery Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			VAR N = COUNTROWS(Dots)
+			VAR MeanX = AVERAGEX(Dots, [@X])
+			VAR MeanY = AVERAGEX(Dots, [@Y])
+			VAR Numerator = SUMX(Dots, ([@X] - MeanX) * ([@Y] - MeanY))
+			VAR Denominator = SQRT(SUMX(Dots, ([@X] - MeanX)^2) * SUMX(Dots, ([@Y] - MeanY)^2))
+			VAR Correlation = DIVIDE(Numerator, Denominator)
+			VAR Magnitude = ABS(Correlation)
+			VAR ResultText = " (correlation r = " & FORMAT(ROUND(Correlation, 2), "0.00", "en-US") & ")."
+			VAR DirectionText = "higher mortality goes with " & IF(Correlation > 0, "higher ", "lower ") & "recovery"
+			RETURN
+			    SWITCH(TRUE(),
+			        N < 5, "Too few points to judge.",
+			        ISBLANK(Correlation), "No clear link (correlation undefined).",
+			        Magnitude < 0.2, "No clear link" & ResultText,
+			        Magnitude < 0.4, "Weak link: " & DirectionText & ResultText,
+			        Magnitude < 0.7, "Moderate link: " & DirectionText & ResultText,
+			        "Strong link: " & DirectionText & ResultText)
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: b11f6bc0-a304-424f-8836-47f40cb56304
+
+	measure 'Scatter How - Disease mortality' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('Health'[Disease Name]), "@X", 'DimCountry'[Avg Mortality Rate], "@Y", 'DimCountry'[Avg Recovery Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			VAR Highest = TOPN(1, Dots, [@X], DESC, 'Health'[Disease Name], ASC)
+			VAR HighestName = CONCATENATEX(Highest, 'Health'[Disease Name])
+			VAR HighestValue = MAXX(Highest, [@X])
+			VAR NextHighest = MAXX(FILTER(Dots, 'Health'[Disease Name] <> HighestName), [@X])
+			RETURN
+			    "Each dot is a disease. Further right = higher mortality. Higher up = better recovery." &
+			    IF(COUNTROWS(Highest) > 0, " Highest mortality: " & HighestName & " (" &
+			        FORMAT(HighestValue, "0.00%", "en-US") & ")" &
+			        IF(NOT ISBLANK(NextHighest) && HighestValue > 2 * NextHighest, ", far above most others.", "."), "")
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 529b7d55-623b-464d-b57a-a71fc8ee57c8
+
+	measure 'Scatter Header - Disease mortality' =
+			VAR MainVerdict = [Scatter Verdict - Disease mortality]
+			VAR FirstWord = LEFT(MainVerdict, FIND(" ", MainVerdict & " ") - 1)
+			VAR VerdictStyle = IF(FirstWord IN {"Weak", "Moderate", "Strong"}, " scatter-verdict-link", "")
+			RETURN
+			"<div class='scatter-title'>Mortality and recovery by disease</div><div class='scatter-how'>" & [Scatter How - Disease mortality] &
+			"</div><div class='scatter-verdict" & VerdictStyle & "'>" & MainVerdict & [Scatter Sensitivity - Disease mortality] & "</div>"
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 3caea549-9945-47cc-9f92-4966c479916a
+
+	measure 'Scatter Verdict - Doctors' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('DimCountry'[Country]), "@X", 'DimCountry'[Avg Doctors per 1000], "@Y", 'DimCountry'[Avg Mortality Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			VAR N = COUNTROWS(Dots)
+			VAR MeanX = AVERAGEX(Dots, [@X])
+			VAR MeanY = AVERAGEX(Dots, [@Y])
+			VAR Numerator = SUMX(Dots, ([@X] - MeanX) * ([@Y] - MeanY))
+			VAR Denominator = SQRT(SUMX(Dots, ([@X] - MeanX)^2) * SUMX(Dots, ([@Y] - MeanY)^2))
+			VAR Correlation = DIVIDE(Numerator, Denominator)
+			VAR Magnitude = ABS(Correlation)
+			VAR ResultText = " (correlation r = " & FORMAT(ROUND(Correlation, 2), "0.00", "en-US") & ")."
+			VAR DirectionText = "higher doctors goes with " & IF(Correlation > 0, "higher ", "lower ") & "mortality"
+			RETURN
+			    SWITCH(TRUE(),
+			        N < 5, "Too few points to judge.",
+			        ISBLANK(Correlation), "No clear link (correlation undefined).",
+			        Magnitude < 0.2, "No clear link" & ResultText,
+			        Magnitude < 0.4, "Weak link: " & DirectionText & ResultText,
+			        Magnitude < 0.7, "Moderate link: " & DirectionText & ResultText,
+			        "Strong link: " & DirectionText & ResultText)
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 1764da49-ee18-4c68-93bd-8dbf57bc2b32
+
+	measure 'Scatter How - Doctors' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('DimCountry'[Country]), "@X", 'DimCountry'[Avg Doctors per 1000], "@Y", 'DimCountry'[Avg Mortality Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			RETURN
+			    "Each dot is a country. Further right = more doctors per 1,000 people. Higher up = higher mortality." &
+			    IF(COUNTROWS(Dots) > 0, " Axis is zoomed: every dot falls between " &
+			        FORMAT(MINX(Dots, [@Y]), "0.00%", "en-US") & " and " &
+			        FORMAT(MAXX(Dots, [@Y]), "0.00%", "en-US") & ".", "")
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: a3ef4d51-4ffc-4349-92e3-05651d769f2e
+
+	measure 'Scatter Header - Doctors' =
+			VAR MainVerdict = [Scatter Verdict - Doctors]
+			VAR FirstWord = LEFT(MainVerdict, FIND(" ", MainVerdict & " ") - 1)
+			VAR VerdictStyle = IF(FirstWord IN {"Weak", "Moderate", "Strong"}, " scatter-verdict-link", "")
+			RETURN
+			"<div class='scatter-title'>Doctors and average mortality by country</div><div class='scatter-how'>" & [Scatter How - Doctors] &
+			"</div><div class='scatter-verdict" & VerdictStyle & "'>" & MainVerdict & "</div>"
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 5c459158-30e0-4256-b0ca-dd32c5c9f3e6
+
+	measure 'Scatter Verdict - Hospital beds' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('DimCountry'[Country]), "@X", 'DimCountry'[Avg Hospital Beds per 1000], "@Y", 'DimCountry'[Avg Mortality Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			VAR N = COUNTROWS(Dots)
+			VAR MeanX = AVERAGEX(Dots, [@X])
+			VAR MeanY = AVERAGEX(Dots, [@Y])
+			VAR Numerator = SUMX(Dots, ([@X] - MeanX) * ([@Y] - MeanY))
+			VAR Denominator = SQRT(SUMX(Dots, ([@X] - MeanX)^2) * SUMX(Dots, ([@Y] - MeanY)^2))
+			VAR Correlation = DIVIDE(Numerator, Denominator)
+			VAR Magnitude = ABS(Correlation)
+			VAR ResultText = " (correlation r = " & FORMAT(ROUND(Correlation, 2), "0.00", "en-US") & ")."
+			VAR DirectionText = "higher hospital beds goes with " & IF(Correlation > 0, "higher ", "lower ") & "mortality"
+			RETURN
+			    SWITCH(TRUE(),
+			        N < 5, "Too few points to judge.",
+			        ISBLANK(Correlation), "No clear link (correlation undefined).",
+			        Magnitude < 0.2, "No clear link" & ResultText,
+			        Magnitude < 0.4, "Weak link: " & DirectionText & ResultText,
+			        Magnitude < 0.7, "Moderate link: " & DirectionText & ResultText,
+			        "Strong link: " & DirectionText & ResultText)
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 322f3e33-dc4b-40d3-887d-abf34bcf1738
+
+	measure 'Scatter How - Hospital beds' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('DimCountry'[Country]), "@X", 'DimCountry'[Avg Hospital Beds per 1000], "@Y", 'DimCountry'[Avg Mortality Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			RETURN
+			    "Each dot is a country. Further right = more hospital beds per 1,000 people. Higher up = higher mortality." &
+			    IF(COUNTROWS(Dots) > 0, " Axis is zoomed: every dot falls between " &
+			        FORMAT(MINX(Dots, [@Y]), "0.00%", "en-US") & " and " &
+			        FORMAT(MAXX(Dots, [@Y]), "0.00%", "en-US") & ".", "")
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: a5850e1f-cf14-4f81-8001-4bf2df74846c
+
+	measure 'Scatter Header - Hospital beds' =
+			VAR MainVerdict = [Scatter Verdict - Hospital beds]
+			VAR FirstWord = LEFT(MainVerdict, FIND(" ", MainVerdict & " ") - 1)
+			VAR VerdictStyle = IF(FirstWord IN {"Weak", "Moderate", "Strong"}, " scatter-verdict-link", "")
+			RETURN
+			"<div class='scatter-title'>Hospital beds and average mortality by country</div><div class='scatter-how'>" & [Scatter How - Hospital beds] &
+			"</div><div class='scatter-verdict" & VerdictStyle & "'>" & MainVerdict & "</div>"
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 52d425e6-1bd6-4f5f-84d4-25a67561a903
+
+	measure 'Scatter Verdict - Treatment cost' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('Health'[Disease Name]), "@X", 'DimCountry'[Avg Treatment Cost USD], "@Y", 'DimCountry'[Avg Recovery Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = TOPN(10, Pairs, [@X], DESC)
+			
+			VAR N = COUNTROWS(Dots)
+			VAR MeanX = AVERAGEX(Dots, [@X])
+			VAR MeanY = AVERAGEX(Dots, [@Y])
+			VAR Numerator = SUMX(Dots, ([@X] - MeanX) * ([@Y] - MeanY))
+			VAR Denominator = SQRT(SUMX(Dots, ([@X] - MeanX)^2) * SUMX(Dots, ([@Y] - MeanY)^2))
+			VAR Correlation = DIVIDE(Numerator, Denominator)
+			VAR Magnitude = ABS(Correlation)
+			VAR ResultText = " (correlation r = " & FORMAT(ROUND(Correlation, 2), "0.00", "en-US") & ")."
+			VAR DirectionText = "higher treatment cost goes with " & IF(Correlation > 0, "higher ", "lower ") & "recovery"
+			RETURN
+			    SWITCH(TRUE(),
+			        N < 5, "Too few points to judge.",
+			        ISBLANK(Correlation), "No clear link (correlation undefined).",
+			        Magnitude < 0.2, "No clear link" & ResultText,
+			        Magnitude < 0.4, "Weak link: " & DirectionText & ResultText,
+			        Magnitude < 0.7, "Moderate link: " & DirectionText & ResultText,
+			        "Strong link: " & DirectionText & ResultText)
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 77d2fa4f-0598-4a24-96c4-416a8e7c61c9
+
+	measure 'Scatter Header - Treatment cost' =
+			VAR MainVerdict = [Scatter Verdict - Treatment cost]
+			VAR FirstWord = LEFT(MainVerdict, FIND(" ", MainVerdict & " ") - 1)
+			VAR VerdictStyle = IF(FirstWord IN {"Weak", "Moderate", "Strong"}, " scatter-verdict-link", "")
+			RETURN
+			"<div class='scatter-title'>Cost and recovery: 10 highest-cost diseases</div><div class='scatter-how'>" & "Each dot is one of the 10 highest-cost diseases. Further right = higher average treatment cost. Higher up = better recovery." &
+			"</div><div class='scatter-verdict" & VerdictStyle & "'>" & MainVerdict & "</div>"
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: be2cfec2-ba04-47a3-a8f2-e0e9fec770b3
+
+	measure 'Scatter Verdict - Healthcare access' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('DimCountry'[Country]), "@X", 'DimCountry'[Avg Healthcare Access], "@Y", 'DimCountry'[Avg Mortality Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			VAR N = COUNTROWS(Dots)
+			VAR MeanX = AVERAGEX(Dots, [@X])
+			VAR MeanY = AVERAGEX(Dots, [@Y])
+			VAR Numerator = SUMX(Dots, ([@X] - MeanX) * ([@Y] - MeanY))
+			VAR Denominator = SQRT(SUMX(Dots, ([@X] - MeanX)^2) * SUMX(Dots, ([@Y] - MeanY)^2))
+			VAR Correlation = DIVIDE(Numerator, Denominator)
+			VAR Magnitude = ABS(Correlation)
+			VAR ResultText = " (correlation r = " & FORMAT(ROUND(Correlation, 2), "0.00", "en-US") & ")."
+			VAR DirectionText = "higher healthcare access goes with " & IF(Correlation > 0, "higher ", "lower ") & "mortality"
+			RETURN
+			    SWITCH(TRUE(),
+			        N < 5, "Too few points to judge.",
+			        ISBLANK(Correlation), "No clear link (correlation undefined).",
+			        Magnitude < 0.2, "No clear link" & ResultText,
+			        Magnitude < 0.4, "Weak link: " & DirectionText & ResultText,
+			        Magnitude < 0.7, "Moderate link: " & DirectionText & ResultText,
+			        "Strong link: " & DirectionText & ResultText)
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: bb31a179-b234-4a90-8e98-0aad02003681
+
+	measure 'Scatter How - Healthcare access' =
+			VAR Pairs =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('DimCountry'[Country]), "@X", 'DimCountry'[Avg Healthcare Access], "@Y", 'DimCountry'[Avg Mortality Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Dots = Pairs
+			
+			RETURN
+			    "Each dot is a country. Further right = better healthcare access. Higher up = higher mortality." &
+			    IF(COUNTROWS(Dots) > 0, " Axis is zoomed: every dot falls between " &
+			        FORMAT(MINX(Dots, [@Y]), "0.00%", "en-US") & " and " &
+			        FORMAT(MAXX(Dots, [@Y]), "0.00%", "en-US") & ".", "")
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: ad7377b5-044c-4053-b727-2c8b1e18ffac
+
+	measure 'Scatter Header - Healthcare access' =
+			VAR MainVerdict = [Scatter Verdict - Healthcare access]
+			VAR FirstWord = LEFT(MainVerdict, FIND(" ", MainVerdict & " ") - 1)
+			VAR VerdictStyle = IF(FirstWord IN {"Weak", "Moderate", "Strong"}, " scatter-verdict-link", "")
+			RETURN
+			"<div class='scatter-title'>Healthcare access and average mortality</div><div class='scatter-how'>" & [Scatter How - Healthcare access] &
+			"</div><div class='scatter-verdict" & VerdictStyle & "'>" & MainVerdict & "</div>"
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: 3941839d-cf58-4d38-964f-8b9122377f79
+
+	measure 'Scatter Sensitivity - Disease mortality' =
+			VAR Dots =
+			    FILTER(
+			        ADDCOLUMNS(VALUES('Health'[Disease Name]), "@X", 'DimCountry'[Avg Mortality Rate], "@Y", 'DimCountry'[Avg Recovery Rate]),
+			        NOT ISBLANK([@X]) && NOT ISBLANK([@Y])
+			    )
+			VAR Highest = TOPN(1, Dots, [@X], DESC, 'Health'[Disease Name], ASC)
+			VAR HighestName = CONCATENATEX(Highest, 'Health'[Disease Name])
+			VAR Remaining = FILTER(Dots, 'Health'[Disease Name] <> HighestName)
+			VAR NextHighest = MAXX(Remaining, [@X])
+			VAR HasOutlier = NOT ISBLANK(NextHighest) && MAXX(Highest, [@X]) > 2 * NextHighest
+			RETURN
+			    IF(HasOutlier && COUNTROWS(Remaining) >= 5,
+			        VAR MeanX = AVERAGEX(Remaining, [@X])
+			        VAR MeanY = AVERAGEX(Remaining, [@Y])
+			        VAR Numerator = SUMX(Remaining, ([@X] - MeanX) * ([@Y] - MeanY))
+			        VAR Denominator = SQRT(SUMX(Remaining, ([@X] - MeanX)^2) * SUMX(Remaining, ([@Y] - MeanY)^2))
+			        VAR ReducedR = DIVIDE(Numerator, Denominator)
+			        VAR Magnitude = ABS(ReducedR)
+			        VAR Strength = SWITCH(TRUE(), Magnitude < 0.2, "no clear link",
+			            Magnitude < 0.4, "weak link", Magnitude < 0.7, "moderate link", "strong link")
+			        RETURN
+			            " Without " & HighestName & ": " &
+			            IF(ISBLANK(ReducedR), "no clear link (correlation undefined).",
+			                Strength & " (correlation r = " & FORMAT(ROUND(ReducedR, 2), "0.00", "en-US") & ").")
+			    )
+		isHidden
+		displayFolder: Scatter explanations
+		lineageTag: d764a721-59d7-474c-a69a-61ab03e2e556
+
+	column Country
+		dataType: string
+		lineageTag: 4c0b3f17-0951-4850-93fc-e687ea2a9244
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 41d036cc-5606-4a9c-8c04-75f3176e0016
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disease Name'
+		dataType: string
+		lineageTag: 29bca868-060f-4252-8486-7d23a9769164
+		summarizeBy: none
+		sourceColumn: Disease Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disease Category'
+		dataType: string
+		lineageTag: 7407bd3f-4c69-42dd-8d4b-9c755509e6b1
+		summarizeBy: none
+		sourceColumn: Disease Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prevalence Rate (%)'
+		dataType: double
+		lineageTag: 95aa2aea-7063-46e2-a1ce-2233a4b64b19
+		summarizeBy: average
+		sourceColumn: Prevalence Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Incidence Rate (%)'
+		dataType: double
+		lineageTag: 39aae1e7-e0b9-4169-899c-6152e52256ec
+		summarizeBy: average
+		sourceColumn: Incidence Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Mortality Rate (%)'
+		dataType: double
+		lineageTag: 637671a4-aa6c-4e1d-92e7-4a528f598061
+		summarizeBy: average
+		sourceColumn: Mortality Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Age Group'
+		dataType: string
+		lineageTag: fd983a52-721e-44dc-b2a3-6a5482a1ff1f
+		summarizeBy: none
+		sourceColumn: Age Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 9c25528f-fd6e-4a24-9cc2-60b68212297c
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Population Affected'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: bdc22897-51cd-4473-89a8-e53383a04fac
+		summarizeBy: sum
+		sourceColumn: Population Affected
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Healthcare Access (%)'
+		dataType: double
+		lineageTag: cc56a490-d30f-42f5-a107-d6d478c5bddc
+		summarizeBy: average
+		sourceColumn: Healthcare Access (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Doctors per 1000'
+		dataType: double
+		lineageTag: fbeaa391-bd9d-42c8-a6d2-85cf7ab5b8f0
+		summarizeBy: sum
+		sourceColumn: Doctors per 1000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Hospital Beds per 1000'
+		dataType: double
+		lineageTag: aa07e0d2-6cd2-4d56-a89d-7b0509365e5c
+		summarizeBy: sum
+		sourceColumn: Hospital Beds per 1000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Treatment Type'
+		dataType: string
+		lineageTag: 435e79ae-074a-440d-b643-40d111919020
+		summarizeBy: none
+		sourceColumn: Treatment Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average Treatment Cost (USD)'
+		dataType: int64
+		formatString: $#,0
+		lineageTag: ba502574-8746-41f7-babc-1e9d71148403
+		summarizeBy: average
+		sourceColumn: Average Treatment Cost (USD)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Availability of Vaccines/Treatment'
+		dataType: string
+		lineageTag: b26ea20e-2880-4acb-a9b0-e7d40b316045
+		summarizeBy: none
+		sourceColumn: Availability of Vaccines/Treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recovery Rate (%)'
+		dataType: double
+		lineageTag: 96e836ed-87fb-42c8-9f23-62771a8a0654
+		summarizeBy: average
+		sourceColumn: Recovery Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DALYs
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5d072218-ec05-4e35-bd84-0c3a2624fe51
+		summarizeBy: sum
+		sourceColumn: DALYs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Improvement in 5 Years (%)'
+		dataType: double
+		lineageTag: 0e7ac558-4f45-4aba-950c-5c7296409d9e
+		summarizeBy: average
+		sourceColumn: Improvement in 5 Years (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Per Capita Income (USD)'
+		dataType: int64
+		formatString: 0
+		lineageTag: e28240f2-ff5e-408a-9407-2a13f30a75b3
+		summarizeBy: sum
+		sourceColumn: Per Capita Income (USD)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Education Index'
+		dataType: double
+		lineageTag: a58a7654-760d-4b98-b46a-a7a06efda2e9
+		summarizeBy: sum
+		sourceColumn: Education Index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Urbanization Rate (%)'
+		dataType: double
+		lineageTag: 16da8439-8428-43f3-8c77-74d459891ebc
+		summarizeBy: average
+		sourceColumn: Urbanization Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Population Affected (Original)'
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 398dcadb-8b06-4119-83cf-4deb33a2615a
+		summarizeBy: none
+		sourceColumn: Population Affected (Original)
+
+	column 'Mortality Rate (%) (Original)'
+		dataType: double
+		isHidden
+		formatString: 0.00"%"
+		lineageTag: 643c899e-1bcc-4e09-8d0c-77a35bb5bb3c
+		summarizeBy: average
+		sourceColumn: Mortality Rate (%) (Original)
+
+	partition Health = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\User\Documents\FYP\HealthScope_cleaned.csv"), [Delimiter = ",", Columns = 24, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Country", type text}, {"Year", Int64.Type}, {"Disease Name", type text}, {"Disease Category", type text}, {"Prevalence Rate (%)", type number}, {"Incidence Rate (%)", type number}, {"Mortality Rate (%)", type number}, {"Age Group", type text}, {"Gender", type text}, {"Population Affected", type number}, {"Healthcare Access (%)", type number}, {"Doctors per 1000", type number}, {"Hospital Beds per 1000", type number}, {"Treatment Type", type text}, {"Average Treatment Cost (USD)", Int64.Type}, {"Availability of Vaccines/Treatment", type text}, {"Recovery Rate (%)", type number}, {"DALYs", Int64.Type}, {"Improvement in 5 Years (%)", type number}, {"Per Capita Income (USD)", Int64.Type}, {"Education Index", type number}, {"Urbanization Rate (%)", type number}, {"Population Affected (Original)", Int64.Type}, {"Mortality Rate (%) (Original)", type number}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Changed column type
+

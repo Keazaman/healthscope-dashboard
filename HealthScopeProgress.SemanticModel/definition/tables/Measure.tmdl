@@ -1,0 +1,50 @@
+table Measure
+	lineageTag: ff6603d6-5413-5826-bcd8-8c14447b4f7f
+
+	column Measure
+		dataType: string
+		lineageTag: 2226d452-412c-583d-92c2-01c6ddcd4ef6
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Measure Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Measure Fields'
+
+	column 'Measure Fields'
+		dataType: string
+		isHidden
+		lineageTag: 8a8428bb-ada8-5664-92e4-6768a9ced131
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Measure Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column 'Measure Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6b1c16d8-96eb-5d0f-b0a5-3306d607ca34
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	partition Measure = calculated
+		mode: import
+		source =
+				{
+				 ("Prevalence", NAMEOF('DimCountry'[Avg Prevalence Rate]), 0),
+				 ("Mortality", NAMEOF('DimCountry'[Avg Mortality Rate]), 1),
+				 ("Recovery", NAMEOF('DimCountry'[Avg Recovery Rate]), 2),
+				 ("Treatment cost", NAMEOF('DimCountry'[Avg Treatment Cost USD]), 3),
+				 ("Reported cases", NAMEOF('Health'[Reported cases]), 4),
+				 ("Est. deaths", NAMEOF('Health'[Est. deaths]), 5),
+				 ("DALYs", NAMEOF('Health'[Total DALYs]), 6)
+				}
+
+	annotation PBI_IsParameterTable = true
+

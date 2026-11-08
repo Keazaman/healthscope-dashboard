@@ -1,0 +1,626 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "health.reported_records": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Reported Records"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Reported Records": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimcountry.avg_mortality_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Mortality Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average mortality (% of cases)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimcountry.avg_treatment_cost_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Treatment Cost USD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Treatment cost": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Average treatment cost (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.selected_measure_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Selected Measure Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Selected measure": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.selected_treatment_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Selected Treatment Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Selected measure": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimcountry.avg_prevalence_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Prevalence Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prevalence": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.est__deaths": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Est. deaths"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Est. deaths": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Estimated deaths": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.total_dalys": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Total DALYs"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "health.super__watch_row_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Watch Row HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Watch Row HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.disease_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Disease Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Disease Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__insight_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Insight HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Insight HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.country": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Country"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Country": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Year": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__country_tile_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Country Tile HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Country Tile HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.disease_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Disease Category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Disease Category": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__kpi_tiles_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - KPI Tiles HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - KPI Tiles HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__hero_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Hero HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Hero HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__death_readout_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Death Readout HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Death Readout HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__disease_mix_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Disease Mix HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Disease Mix HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__top_disease_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Top Disease HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Top Disease HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.age_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Age Group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Age Group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__death_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Death Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Death Share": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.treatment_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Treatment Type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Treatment Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.super__country_race_html": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Super - Country Race HTML"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Super - Country Race HTML": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "health.reported_cases": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Health",
+			          "ConceptualProperty": "Reported cases"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dimcountry.avg_recovery_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Recovery Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recovery": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Average recovery (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimcountry.avg_healthcare_access": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Healthcare Access"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average healthcare access (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimcountry.avg_hospital_beds_per_1000": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Hospital Beds per 1000"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average hospital beds per 1,000 people": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimcountry.avg_doctors_per_1000": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimCountry",
+			          "ConceptualProperty": "Avg Doctors per 1000"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average doctors per 1,000 people": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

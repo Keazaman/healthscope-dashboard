@@ -1,0 +1,97 @@
+DEFINE
+
+    // Number of dataset records in the current filter selection.
+    MEASURE 'Health'[Record Count] =
+        COUNTROWS ( 'Health' )
+
+    // Number of countries represented in the filtered records.
+    MEASURE 'Health'[Countries in Selection] =
+        DISTINCTCOUNT ( 'Health'[Country] )
+
+    // Sum across records; not a distinct count of people.
+    MEASURE 'Health'[Reported Population Affected] =
+        SUM ( 'Health'[Population Affected] )
+
+    // Average recorded prevalence, converted to a percentage fraction.
+    MEASURE 'Health'[Avg Prevalence Rate] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Prevalence Rate (%)] ),
+            100
+        )
+
+    // Average recorded incidence.
+    MEASURE 'Health'[Avg Incidence Rate] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Incidence Rate (%)] ),
+            100
+        )
+
+    // Average recorded mortality.
+    MEASURE 'Health'[Avg Mortality Rate] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Mortality Rate (%)] ),
+            100
+        )
+
+    // Average recorded healthcare access.
+    MEASURE 'Health'[Avg Healthcare Access] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Healthcare Access (%)] ),
+            100
+        )
+
+    // Average recorded recovery.
+    MEASURE 'Health'[Avg Recovery Rate] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Recovery Rate (%)] ),
+            100
+        )
+
+    // Average doctors per 1,000 people across selected records.
+    MEASURE 'Health'[Avg Doctors per 1000] =
+        AVERAGE ( 'Health'[Doctors per 1000] )
+
+    // Average hospital beds per 1,000 people across selected records.
+    MEASURE 'Health'[Avg Hospital Beds per 1000] =
+        AVERAGE ( 'Health'[Hospital Beds per 1000] )
+
+    // Average of the treatment costs recorded in the dataset.
+    MEASURE 'Health'[Avg Treatment Cost USD] =
+        AVERAGE ( 'Health'[Average Treatment Cost (USD)] )
+
+    // Average recorded disability-adjusted life years.
+    MEASURE 'Health'[Avg DALYs] =
+        AVERAGE ( 'Health'[DALYs] )
+
+    // Average of the supplied five-year improvement field.
+    // This is not calculated from the dashboard's yearly trend.
+    MEASURE 'Health'[Avg Five-Year Improvement] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Improvement in 5 Years (%)] ),
+            100
+        )
+
+    // Average recorded per-capita income.
+    MEASURE 'Health'[Avg Per Capita Income USD] =
+        AVERAGE ( 'Health'[Per Capita Income (USD)] )
+
+    // Average education index; keep as a decimal, not a percentage.
+    MEASURE 'Health'[Avg Education Index] =
+        AVERAGE ( 'Health'[Education Index] )
+
+    // Average recorded urbanisation rate.
+    MEASURE 'Health'[Avg Urbanization Rate] =
+        DIVIDE (
+            AVERAGE ( 'Health'[Urbanization Rate (%)] ),
+            100
+        )
+
+EVALUATE
+    ROW (
+        "Records", [Record Count],
+        "Countries", [Countries in Selection],
+        "Reported population affected", [Reported Population Affected],
+        "Mortality fraction", [Avg Mortality Rate],
+        "Healthcare access fraction", [Avg Healthcare Access],
+        "Treatment cost USD", [Avg Treatment Cost USD]
+    )

@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "2fbb6bb386ae57a56e0c",
+  "displayName": "Overview",
+  "displayOption": "FitToPage",
+  "height": 1904,
+  "width": 1920,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#06121C'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'HealthScope frosted glass gradient'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "HealthScopeOverviewReadable.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#06121C'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'HealthScope frosted glass gradient'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "HealthScopeGlassWallpaper20261101.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fill'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "033a750a42900f06e89f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "06452aa89324af54477e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "1038b8a418b7e360ceec",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "127eca11a7d062e17051",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "14d99d70430c4da6df96",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "16b97d690be2e1869c30",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "23929f5f81873645bc74",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "2931c6afc39a6c8faf3e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "2ec277f6f08247178ea9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "3984f4f0b4899b9135d3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "3c41752740687b2b0c02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "3cadd787d19ec58e7028",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "42c5c8ed4151718cc8bf",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "48f9afd32371e46223ac",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "51aeb77b4d27455af2c2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "5980a762e059f708bce9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "5b8c29f57f7775b2016c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "5bb8ae79334d0b032162",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "5ccc2b74c40313c7d6c7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "67c2aca6b50f6e68e6e4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "6ec77a98129c404ed6b1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "76e0bab81d5a22654b84",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "7763f8925efd3a3dcfb2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "7827089389121c4de489",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "803a5e88f7ecc71dbf8e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "88fd987afcd67a3e43a0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "8afc1efa96c2e8e8651e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "97bcde4a5d163dedbc0a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "9c6996160c2396e9714b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "aa72c68935ff21b95bfa",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "b7bc4337b997a0c7139e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "ccaf14a45dd57e705148",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "e77ad17bd6e8852167b4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c5eeb43b33dd7c29ab1",
+      "target": "ee2f51574e05a0a7711d",
+      "type": "NoFilter"
+    }
+  ]
+}

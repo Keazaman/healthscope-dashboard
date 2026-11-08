@@ -1,0 +1,45 @@
+table 'Treatment Measure'
+	lineageTag: 128e8bae-59b3-5295-9bc4-f4391f2a3ccb
+
+	column 'Treatment Measure'
+		dataType: string
+		lineageTag: db2ad7be-56ef-5fed-aecf-579472f6e79d
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Treatment Measure Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Treatment Measure Fields'
+
+	column 'Treatment Measure Fields'
+		dataType: string
+		isHidden
+		lineageTag: 975f7c35-ed87-5d2e-9b34-bc3ec88477a9
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Treatment Measure Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column 'Treatment Measure Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a049de52-bf61-59e5-a724-d7ad61038549
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	partition 'Treatment Measure' = calculated
+		mode: import
+		source =
+				{
+				 ("Treatment cost", NAMEOF('DimCountry'[Avg Treatment Cost USD]), 0),
+				 ("Recovery", NAMEOF('DimCountry'[Avg Recovery Rate]), 1)
+				}
+
+	annotation PBI_IsParameterTable = true
+

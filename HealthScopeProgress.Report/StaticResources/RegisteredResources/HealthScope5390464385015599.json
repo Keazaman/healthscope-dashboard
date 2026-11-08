@@ -1,0 +1,41 @@
+{
+  "name": "HealthScope5390464385015599.json",
+  "dataColors": [
+    "#A6E85B",
+    "#5CBED1",
+    "#F2B84B",
+    "#9E83E8",
+    "#FF7A66",
+    "#5195CB",
+    "#6ECAAB",
+    "#D58BC5"
+  ],
+  "background": "#06121C",
+  "foreground": "#EEF7FB",
+  "tableAccent": "#A6E85B",
+  "good": "#A6E85B",
+  "neutral": "#F2B84B",
+  "bad": "#FF7A66",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 32,
+      "color": "#EEF7FB"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 14,
+      "color": "#EEF7FB"
+    },
+    "header": {
+      "fontFace": "Segoe UI",
+      "fontSize": 11,
+      "color": "#BCCFDA"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#BCCFDA"
+    }
+  }
+}

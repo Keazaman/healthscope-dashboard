@@ -1,0 +1,8 @@
+relationship 57b6ea33-422b-f340-c712-6705f64edf4f
+	fromColumn: Health.Year
+	toColumn: DimYear.Year
+
+relationship e9212959-cc12-fdd0-885a-b9e19b0c2a6b
+	fromColumn: Health.Country
+	toColumn: DimCountry.Country
+

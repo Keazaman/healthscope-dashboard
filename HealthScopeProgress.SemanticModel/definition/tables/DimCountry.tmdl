@@ -1,0 +1,124 @@
+table DimCountry
+	lineageTag: 99bef980-d651-4797-919d-674a4a94ac03
+
+	measure 'Avg Mortality Rate' = DIVIDE(AVERAGE('Health'[Mortality Rate (%)]), 100)
+		formatString: 0.00%
+		lineageTag: 5920a0e0-1050-4ebf-827b-2fde33cdc451
+
+	measure 'Avg Healthcare Access' =
+			
+			DIVIDE(
+			    AVERAGE('Health'[Healthcare Access (%)]),
+			    100
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 082ca8b7-a9a1-4771-9456-f90065d9bfc7
+
+	measure 'Avg Recovery Rate' = DIVIDE(AVERAGE('Health'[Recovery Rate (%)]), 100)
+		formatString: 0.00%
+		lineageTag: bce41abe-1228-46ee-ac31-7b49576af59d
+
+	measure 'Avg Doctors per 1000' =
+			
+			AVERAGE('Health'[Doctors per 1000])
+		formatString: 0.00
+		lineageTag: 976e3b80-2bc1-4e6a-beeb-23630c94feb2
+
+	measure 'Avg Hospital Beds per 1000' =
+			
+			AVERAGE('Health'[Hospital Beds per 1000])
+		formatString: 0.00
+		lineageTag: 89607aad-38b9-45e7-be8e-4df84a6b1b5c
+
+	measure 'Avg Treatment Cost USD' = AVERAGE('Health'[Average Treatment Cost (USD)])
+		formatString: $#,0
+		lineageTag: 4ac6af06-b200-4160-81f5-6ce69b463505
+
+	measure 'Avg DALYs' =
+			
+			AVERAGE('Health'[DALYs])
+		formatString: 0.00
+		lineageTag: 98d4ccd7-eff2-4a04-8f42-db63ee109c78
+
+	measure 'Avg Five-Year Improvement' =
+			
+			DIVIDE(
+			    AVERAGE('Health'[Improvement in 5 Years (%)]),
+			    100
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 11b3194a-4475-4015-b263-73dd5431efc9
+
+	measure 'Avg Incidence Rate' =
+			
+			DIVIDE(
+			    AVERAGE('Health'[Incidence Rate (%)]),
+			    100
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 90d26412-fd64-4467-89c1-7908bde37c05
+
+	measure 'Avg Per Capita Income USD' =
+			
+			AVERAGE('Health'[Per Capita Income (USD)])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d90da0bf-f07a-4ea9-81a7-bb7ee0281543
+
+	measure 'Avg Prevalence Rate' = DIVIDE(AVERAGE('Health'[Prevalence Rate (%)]), 100)
+		formatString: 0.00%
+		lineageTag: 82ec0d83-6453-433f-9b39-1a8216f3ef66
+
+	measure 'Avg Education Index' =
+			
+			AVERAGE('Health'[Education Index])
+		formatString: 0.00
+		lineageTag: c0f9c0ce-45b5-4c9f-92da-7f120f1886ce
+
+	measure 'Avg Urbanization Rate' =
+			
+			DIVIDE(
+			    AVERAGE('Health'[Urbanization Rate (%)]),
+			    100
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f91a5c65-b265-49dd-a7f4-a11c788f5c70
+
+	column Country
+		lineageTag: 7e8b0075-2c1c-42ee-9740-dcdbcb2145fc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Country]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Map Country'
+		lineageTag: 06db28bc-21f9-422a-aae7-4f32ba0763e1
+		dataCategory: Country
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Map Country]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCountry = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    DISTINCT (
+				        SELECTCOLUMNS (
+				            'Health',
+				            "Country", 'Health'[Country]
+				        )
+				    ),
+				    "Map Country",
+				        SWITCH (
+				            [Country],
+				            "USA", "United States",
+				            "UK", "United Kingdom",
+				            [Country]
+				        )
+				)
+
+	annotation PBI_Id = 590b0e4b86564c2cb28104c15909811d
+

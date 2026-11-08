@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "HealthScopeProgress"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6825a3bf-dc41-4baf-bfa8-7b639e3411e6"
+  }
+}

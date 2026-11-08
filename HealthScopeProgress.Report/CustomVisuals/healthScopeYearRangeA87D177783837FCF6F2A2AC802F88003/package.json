@@ -1,0 +1,29 @@
+{
+  "version": "1.0.1.0",
+  "author": {
+    "name": "HealthScope project",
+    "email": ""
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "name": "healthScopeYearRange",
+    "displayName": "HealthScope Year Range",
+    "guid": "healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003",
+    "visualClassName": "Visual",
+    "version": "1.0.1.0",
+    "description": "Inclusive start and end year dropdowns that filter the existing Year column.",
+    "supportUrl": "https://learn.microsoft.com/power-bi/developer/visuals/",
+    "gitHubUrl": ""
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}

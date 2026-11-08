@@ -1,0 +1,83 @@
+{
+  "visual": {
+    "name": "healthScopeYearRange",
+    "displayName": "HealthScope Year Range",
+    "guid": "healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003",
+    "visualClassName": "Visual",
+    "version": "1.0.1.0",
+    "description": "Inclusive start and end year dropdowns that filter the existing Year column.",
+    "supportUrl": "https://learn.microsoft.com/power-bi/developer/visuals/",
+    "gitHubUrl": ""
+  },
+  "author": {
+    "name": "HealthScope project",
+    "email": ""
+  },
+  "apiVersion": "5.3.0",
+  "style": "style/visual.less",
+  "stringResources": {},
+  "capabilities": {
+    "privileges": [],
+    "dataRoles": [
+      {
+        "name": "Values",
+        "displayName": "Year",
+        "kind": "Grouping"
+      }
+    ],
+    "dataViewMappings": [
+      {
+        "conditions": [
+          {
+            "Values": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ],
+        "categorical": {
+          "categories": {
+            "for": {
+              "in": "Values"
+            },
+            "dataReductionAlgorithm": {
+              "top": {
+                "count": 1000
+              }
+            }
+          }
+        }
+      }
+    ],
+    "objects": {
+      "general": {
+        "properties": {
+          "filter": {
+            "type": {
+              "filter": true
+            }
+          }
+        }
+      }
+    },
+    "supportsSynchronizingFilterState": true,
+    "supportsEmptyDataView": true,
+    "supportsLandingPage": true,
+    "supportsKeyboardFocus": true,
+    "supportsHighlight": false,
+    "suppressDefaultTitle": true,
+    "sorting": {
+      "default": {}
+    }
+  },
+  "content": {
+    "js": "var healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003;\n(function () {\n  'use strict';\n  var GUID = 'healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003';\n  var CSS = '.hs-year-range{box-sizing:border-box;width:100%;height:100%;display:flex;align-items:center;gap:12px;color:#EEF7FB;font-family:\"Segoe UI\",sans-serif;color-scheme:dark}.hs-year-range *{box-sizing:border-box}.hs-year-range select{min-width:0;flex:1;width:0;height:44px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:#1A3040;color:#EEF7FB;padding:6px 12px;font-family:\"Segoe UI\",sans-serif;font-size:16pt;font-weight:600;cursor:pointer;outline:none}.hs-year-range select:focus-visible{outline:2px solid #A6E85B;outline-offset:2px}.hs-year-range select option{background:#173040;color:#EEF7FB;font-size:14pt}.hs-year-range .dash{font-size:16pt;flex:none}.hs-year-range .empty{font-size:12pt;color:#BCCFDA}';\n\n  function numericYears(values) {\n    return Array.from(new Set((values || []).map(Number).filter(function(v){return Number.isFinite(v) && Math.floor(v)===v;}))).sort(function(a,b){return a-b;});\n  }\n  function restore(filters, target, years) {\n    if (!years.length) return null;\n    var start=years[0], end=years[years.length-1];\n    (filters || []).forEach(function(f){\n      if (!f || !f.target || f.target.table!==target.table || f.target.column!==target.column) return;\n      if (f.operator==='In' && Array.isArray(f.values) && f.values.length) {\n        var selected=numericYears(f.values);if(selected.length){start=Math.max(start,selected[0]);end=Math.min(end,selected[selected.length-1]);}\n      }\n      (f.conditions || []).forEach(function(c){\n        var n=Number(c.value);if(!Number.isFinite(n))return;\n        if(c.operator==='GreaterThanOrEqual')start=Math.max(start,n);\n        if(c.operator==='GreaterThan')start=Math.max(start,n+1);\n        if(c.operator==='LessThanOrEqual')end=Math.min(end,n);\n        if(c.operator==='LessThan')end=Math.min(end,n-1);\n        if(c.operator==='Is'){start=Math.max(start,n);end=Math.min(end,n);}\n      });\n    });\n    return {start:start,end:end};\n  }\n  function filterFor(target,start,end) {\n    return {$schema:'http://powerbi.com/product/schema#advanced',target:target,filterType:0,logicalOperator:'And',conditions:[{operator:'GreaterThanOrEqual',value:start},{operator:'LessThanOrEqual',value:end}]};\n  }\n  function clampChange(which,year,start,end) {\n    if(which==='start'){start=year;if(start>end)end=start;}\n    else {end=year;if(end<start)start=end;}\n    return {start:start,end:end};\n  }\n  function Visual(options) {\n    this.host=options.host;this.years=[];this.target=null;this.range=null;this.root=document.createElement('div');\n    this.root.className='hs-year-range';this.root.setAttribute('role','group');this.root.setAttribute('aria-label','Year range');\n    var style=document.createElement('style');style.textContent=CSS;options.element.appendChild(style);options.element.appendChild(this.root);\n    this.style=style;this.element=options.element;this.makeControls();\n  }\n  Visual.prototype.makeControls=function(){\n    var self=this;this.start=document.createElement('select');this.end=document.createElement('select');\n    this.start.setAttribute('aria-label','Start year');this.start.title='Start year (inclusive)';\n    this.end.setAttribute('aria-label','End year');this.end.title='End year (inclusive)';\n    var dash=document.createElement('span');dash.className='dash';dash.textContent='–';dash.setAttribute('aria-hidden','true');\n    this.root.appendChild(this.start);this.root.appendChild(dash);this.root.appendChild(this.end);\n    this.start.addEventListener('change',function(){self.change('start',Number(self.start.value));});\n    this.end.addEventListener('change',function(){self.change('end',Number(self.end.value));});\n  };\n  Visual.prototype.change=function(which,value){\n    if(!this.target||!this.range||this.years.indexOf(value)<0)return;\n    this.range=clampChange(which,value,this.range.start,this.range.end);this.paintValues();\n    var all=this.range.start===this.years[0] && this.range.end===this.years[this.years.length-1];\n    this.host.applyJsonFilter(all?null:filterFor(this.target,this.range.start,this.range.end),'general','filter',all?1:0);\n  };\n  Visual.prototype.paintValues=function(){\n    if(this.range){this.start.value=String(this.range.start);this.end.value=String(this.range.end);}\n  };\n  Visual.prototype.update=function(options){\n    var ev=this.host.eventService;if(ev&&ev.renderingStarted)ev.renderingStarted(options);\n    try {\n      var data=(options.dataViews||[])[0], cat=data&&data.categorical&&data.categorical.categories&&data.categorical.categories[0];\n      if(cat){\n        var expression=cat.source&&cat.source.expr, ref=cat.source&&cat.source.queryName||'Health.Year';\n        // SQ column expressions expose their actual entity and reference name.\n        this.target={table:expression&&expression.source&&expression.source.entity||ref.slice(0,ref.lastIndexOf('.')),column:expression&&expression.ref||ref.slice(ref.lastIndexOf('.')+1)};\n        var incoming=numericYears(cat.values);this.years=numericYears(this.years.concat(incoming));\n      }\n      var self=this;\n      [this.start,this.end].forEach(function(select){\n        if(select.options.length!==self.years.length){\n          select.innerHTML='';self.years.forEach(function(y){var option=document.createElement('option');option.value=String(y);option.textContent=String(y);select.appendChild(option);});\n        }\n        select.disabled=!self.years.length;\n      });\n      if(this.target){this.range=restore(options.jsonFilters||[],this.target,this.years);this.paintValues();}\n      this.root.style.width=Math.max(0,options.viewport.width)+'px';this.root.style.height=Math.max(0,options.viewport.height)+'px';\n    } catch(e) {if(ev&&ev.renderingFailed)ev.renderingFailed(options,String(e));}\n    finally {if(ev&&ev.renderingFinished)ev.renderingFinished(options);}\n  };\n  Visual.prototype.getFormattingModel=function(){return {cards:[]};};\n  Visual.prototype.destroy=function(){this.root.remove();this.style.remove();};\n  var plugin={name:GUID,displayName:'HealthScope Year Range',class:'Visual',apiVersion:'5.3.0',custom:true,create:function(o){return new Visual(o);}};\n  if(typeof window!=='undefined'&&window.powerbi){window.powerbi.visuals=window.powerbi.visuals||{};window.powerbi.visuals.plugins=window.powerbi.visuals.plugins||{};window.powerbi.visuals.plugins[GUID]=plugin;}\n  healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003={default:plugin};\n  if(typeof globalThis!=='undefined')globalThis.HealthScopeYearRangeCore={restore:restore,filterFor:filterFor,clampChange:clampChange,numericYears:numericYears,Visual:Visual};\n})();\n",
+    "css": "",
+    "iconBase64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAmUlEQVR4nO2WwQ2AIAxFy0+vLuHNq0cXYiYWcgXH0cTEC0kFTKUSeQknCn2UNKkbxnknQ2CZvC2BsE7n0o4HGQNrAXfXBSUlT+GXLV8gKCZOiXBu8CUlvSQmjpcehdRBLSQRLr1AOx5kDKwFWNp4sxPaqIBX7gKpqiBj0AWof4Ex6ALUvyAiNcE8RRp0OOfQ/6bimqBqti8KHDjiNEZz0N+vAAAAAElFTkSuQmCC"
+  },
+  "visualEntryPoint": "",
+  "externalJS": [],
+  "assets": {
+    "icon": "assets/icon.png"
+  }
+}

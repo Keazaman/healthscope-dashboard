@@ -1,0 +1,148 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "Fluent2-CY26SU09",
+      "reportVersionAtImport": {
+        "visual": "2.13.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "HealthScope5390464385015599.json",
+      "reportVersionAtImport": {
+        "visual": "2.13.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "maps",
+    "htmlContent443BE3AD55E043BF878BED274D3A6855"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "Fluent2-CY26SU09",
+          "path": "BaseThemes/Fluent2-CY26SU09.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "HealthScope5390464385015599.json",
+          "path": "HealthScope5390464385015599.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "HealthScopeGlassWallpaper20261101.png",
+          "path": "HealthScopeGlassWallpaper20261101.png",
+          "type": "Image"
+        },
+        {
+          "name": "HealthScopeOverviewReadable.png",
+          "path": "HealthScopeOverviewReadable.png",
+          "type": "Image"
+        },
+        {
+          "name": "HealthScopeReadable1344.png",
+          "path": "HealthScopeReadable1344.png",
+          "type": "Image"
+        },
+        {
+          "name": "HealthScopeReadable1416.png",
+          "path": "HealthScopeReadable1416.png",
+          "type": "Image"
+        },
+        {
+          "name": "HealthScopeReadable1456.png",
+          "path": "HealthScopeReadable1456.png",
+          "type": "Image"
+        },
+        {
+          "name": "HealthScopeReadable1864.png",
+          "path": "HealthScopeReadable1864.png",
+          "type": "Image"
+        },
+        {
+          "name": "HealthScopeReadable2156.png",
+          "path": "HealthScopeReadable2156.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "healthScopeBody9A17207ACE97F50AE28182DF27638E6",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "healthScopeBody9A17207ACE97F50AE28182DF27638E6.pbiviz.json",
+          "path": "healthScopeBody9A17207ACE97F50AE28182DF27638E6.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003.pbiviz.json",
+          "path": "healthScopeYearRangeA87D177783837FCF6F2A2AC802F88003.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true,
+    "enableDeveloperMode": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
+  }
+}

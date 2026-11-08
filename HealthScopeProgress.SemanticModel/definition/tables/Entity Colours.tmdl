@@ -1,0 +1,95 @@
+table 'Entity Colours'
+	isHidden
+	lineageTag: 591c1dd3-4b69-553b-bcb1-d1bd06dddb23
+
+	column 'Entity Type'
+		dataType: string
+		isHidden
+		lineageTag: 35539d87-4227-5f00-83ce-cc6383e7d068
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Entity Type]
+
+	column 'Entity Name'
+		dataType: string
+		isHidden
+		lineageTag: 916bd378-1c87-510b-84ea-b410811918d0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Entity Name]
+
+	column Hex
+		dataType: string
+		isHidden
+		lineageTag: 4f6a1750-3670-52c1-aa15-2b084bcda335
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Hex]
+
+	partition 'Entity Colours' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Entity Type", STRING, "Entity Name", STRING, "Hex", STRING,
+				    {
+				        {"Country", "Argentina", "#FF6B6B"},
+				        {"Country", "Australia", "#FF9F43"},
+				        {"Country", "Brazil", "#FFD166"},
+				        {"Country", "Canada", "#A3E635"},
+				        {"Country", "China", "#2ECC71"},
+				        {"Country", "France", "#1ABC9C"},
+				        {"Country", "Germany", "#00D1FF"},
+				        {"Country", "India", "#4DA3FF"},
+				        {"Country", "Indonesia", "#7C83FF"},
+				        {"Country", "Italy", "#B085FF"},
+				        {"Country", "Japan", "#E070FF"},
+				        {"Country", "Mexico", "#FF70B8"},
+				        {"Country", "Nigeria", "#C8A27A"},
+				        {"Country", "Russia", "#E6EDF3"},
+				        {"Country", "Saudi Arabia", "#FF8A5B"},
+				        {"Country", "South Africa", "#8EE3C8"},
+				        {"Country", "South Korea", "#F2E394"},
+				        {"Country", "Turkey", "#9AD1FF"},
+				        {"Country", "UK", "#D9A7FF"},
+				        {"Country", "USA", "#FFB3C7"},
+				        {"Disease Name", "Alzheimer's Disease", "#FF6B6B"},
+				        {"Disease Name", "Asthma", "#FF9F43"},
+				        {"Disease Name", "Cancer", "#FFD166"},
+				        {"Disease Name", "Cholera", "#A3E635"},
+				        {"Disease Name", "COVID-19", "#2ECC71"},
+				        {"Disease Name", "Dengue", "#1ABC9C"},
+				        {"Disease Name", "Diabetes", "#00D1FF"},
+				        {"Disease Name", "Ebola", "#4DA3FF"},
+				        {"Disease Name", "Hepatitis", "#7C83FF"},
+				        {"Disease Name", "HIV/AIDS", "#B085FF"},
+				        {"Disease Name", "Hypertension", "#E070FF"},
+				        {"Disease Name", "Influenza", "#FF70B8"},
+				        {"Disease Name", "Leprosy", "#C8A27A"},
+				        {"Disease Name", "Malaria", "#E6EDF3"},
+				        {"Disease Name", "Measles", "#FF8A5B"},
+				        {"Disease Name", "Parkinson's Disease", "#8EE3C8"},
+				        {"Disease Name", "Polio", "#F2E394"},
+				        {"Disease Name", "Rabies", "#9AD1FF"},
+				        {"Disease Name", "Tuberculosis", "#D9A7FF"},
+				        {"Disease Name", "Zika", "#FFB3C7"},
+				        {"Disease Category", "Bacterial", "#A6E85B"},
+				        {"Disease Category", "Cardiovascular", "#5CBED1"},
+				        {"Disease Category", "Chronic", "#F2B84B"},
+				        {"Disease Category", "Metabolic", "#9E83E8"},
+				        {"Disease Category", "Neurological", "#FF7A66"},
+				        {"Disease Category", "Parasitic", "#5195CB"},
+				        {"Disease Category", "Respiratory", "#6ECAAB"},
+				        {"Disease Category", "Viral", "#D58BC5"},
+				        {"Treatment Type", "Medication", "#00D1FF"},
+				        {"Treatment Type", "Therapy", "#FF9F43"},
+				        {"Treatment Type", "Vaccination", "#A3E635"},
+				        {"Treatment Type", "Surgery", "#FF6B6B"},
+				        {"Availability of Vaccines/Treatment", "Yes", "#2ECC71"},
+				        {"Availability of Vaccines/Treatment", "No", "#FF6B6B"},
+				        {"Age Group", "0-18", "#9AD1FF"},
+				        {"Age Group", "19-35", "#4DA3FF"},
+				        {"Age Group", "36-60", "#7C83FF"},
+				        {"Age Group", "61+", "#B085FF"}
+				    }
+				)
+

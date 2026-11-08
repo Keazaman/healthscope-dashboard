@@ -1,0 +1,26 @@
+table DimYear
+	lineageTag: c503c06c-5de4-421d-bba5-7c94a8f7b968
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ac49dcd-bb54-44cf-baf9-b76f7756365f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = User
+
+	partition DimYear = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    SELECTCOLUMNS (
+				        'Health',
+				        "Year", 'Health'[Year]
+				    )
+				)
+
+	annotation PBI_Id = 9e6a9cb3d0474021af1bfddbd840500e
+

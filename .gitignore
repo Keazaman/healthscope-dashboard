@@ -1,0 +1,5 @@
+*.csv
+*.zip
+.pbi/cache.abf
+**/.pbi/localSettings.json
+*.abf
