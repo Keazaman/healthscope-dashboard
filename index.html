@@ -77,6 +77,7 @@
     }
 
     .zoom-controls button:disabled { opacity: 0.5; cursor: default; }
+    #report-refresh { min-width: 5.75em; }
 
     .zoom-controls input {
       width: 96px;
@@ -138,6 +139,26 @@
 
     .report-frame.is-loading iframe { visibility: hidden; }
 
+    .report-status {
+      position: absolute;
+      z-index: 1;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: calc(100% - 24px);
+      margin: 0;
+      padding: 6px 10px;
+      border: 1px solid #38515e;
+      border-radius: 6px;
+      background: #0d2232;
+      font-size: 0.8125rem;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .report-status:empty { display: none; }
+
     @supports (height: 100dvh) {
       .report-viewport {
         --report-width: min(100vw, calc((100dvh - 48px) * 1920 / 1904));
@@ -177,6 +198,7 @@
                 aria-label="Fit report to window" aria-pressed="true">Fit</button>
         <button id="zoom-100" type="button" title="Set zoom to 100% of the fitted size"
                 aria-label="Set zoom to 100 percent" aria-pressed="false">100%</button>
+        <button id="report-refresh" type="button" title="Reload the dashboard and reset zoom to Fit">Refresh</button>
       </div>
       <nav aria-label="Project links">
         <a href="https://github.com/Keazaman/healthscope-dashboard">GitHub</a>
@@ -189,6 +211,7 @@
       <div class="report-space">
         <div class="report-frame">
           <iframe title="HealthScope" src="https://app.powerbi.com/view?r=eyJrIjoiNGE2NjdkYjUtYTMwZC00MzhkLWIwZjktZDhhMjljYzVjOWI2IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" allowfullscreen></iframe>
+          <p class="report-status" role="status"></p>
         </div>
       </div>
     </div>
@@ -203,6 +226,9 @@
     const zoomIn = document.getElementById('zoom-in');
     const fit = document.getElementById('zoom-fit');
     const normal = document.getElementById('zoom-100');
+    const refresh = document.getElementById('report-refresh');
+    const reportStatus = frame.querySelector('.report-status');
+    const embedUrl = new URL(iframe.src);
     const storageKey = 'healthscope-report-zoom';
     const canvas = { width: 1920, height: 1904 };
     const min = Number(slider.min);
@@ -210,9 +236,50 @@
     const step = Number(slider.step);
     let zoom = 100;
     let fitting = true;
+    let loadTimer;
+    let loading = false;
+    let retried = false;
+    let navigation = 0;
 
-    frame.classList.add('is-loading');
-    iframe.addEventListener('load', () => frame.classList.remove('is-loading'), { once: true });
+    function finishLoading(message = '') {
+      clearTimeout(loadTimer);
+      loading = false;
+      refresh.disabled = false;
+      frame.classList.remove('is-loading');
+      reportStatus.textContent = message;
+    }
+
+    function startLoading(message, navigate) {
+      clearTimeout(loadTimer);
+      loading = true;
+      refresh.disabled = true;
+      frame.classList.add('is-loading');
+      reportStatus.textContent = message;
+      loadTimer = setTimeout(retryLoading, 15000);
+
+      if (navigate) {
+        const url = new URL(embedUrl);
+        url.searchParams.set('_refresh', `${Date.now()}-${++navigation}`);
+        iframe.src = url.href;
+      }
+    }
+
+    function retryLoading() {
+      if (!loading) return;
+      if (retried) {
+        finishLoading('The dashboard took too long to load. Press Refresh to try again.');
+        return;
+      }
+      retried = true;
+      setZoom(100, true);
+      startLoading('Reloading dashboard…', true);
+    }
+
+    iframe.addEventListener('load', () => {
+      if (loading) finishLoading();
+    });
+    iframe.addEventListener('error', retryLoading);
+    startLoading('Loading dashboard…', false);
 
     function sizeReport() {
       // Measure the outer viewport so a newly visible scrollbar does not change the Fit scale.
@@ -257,6 +324,11 @@
     zoomIn.addEventListener('click', () => setZoom(zoom + step));
     fit.addEventListener('click', () => setZoom(100, true));
     normal.addEventListener('click', () => setZoom(100));
+    refresh.addEventListener('click', () => {
+      retried = false;
+      setZoom(100, true);
+      startLoading('Reloading dashboard…', true);
+    });
 
     document.addEventListener('keydown', event => {
       if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
