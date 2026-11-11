@@ -190,12 +190,12 @@
     <div class="header-actions">
       <div class="zoom-controls" role="group" aria-label="Report zoom">
         <button id="zoom-out" type="button" title="Zoom out (−)" aria-label="Zoom out">−</button>
-        <input id="zoom-slider" type="range" min="50" max="200" step="10" value="100"
+        <input id="zoom-slider" type="range" min="50" max="200" step="10" value="200"
                title="Zoom from 50% to 200%" aria-label="Report zoom percentage">
         <button id="zoom-in" type="button" title="Zoom in (+)" aria-label="Zoom in">+</button>
-        <output id="zoom-value" for="zoom-slider" aria-label="Current report zoom">100%</output>
-        <button id="zoom-fit" type="button" title="Fit the report to the window (0)"
-                aria-label="Fit report to window" aria-pressed="true">Fit</button>
+        <output id="zoom-value" for="zoom-slider" aria-label="Current report zoom">200%</output>
+        <button id="zoom-fit" type="button" title="Fit at 200% zoom (0)"
+                aria-label="Fit report at 200 percent" aria-pressed="true">Fit</button>
         <button id="zoom-100" type="button" title="Set zoom to 100% of the fitted size"
                 aria-label="Set zoom to 100 percent" aria-pressed="false">100%</button>
         <button id="report-refresh" type="button" title="Reload the dashboard and reset zoom to Fit">Refresh</button>
@@ -234,7 +234,8 @@
     const min = Number(slider.min);
     const max = Number(slider.max);
     const step = Number(slider.step);
-    let zoom = 100;
+    const fitZoom = 200;
+    let zoom = fitZoom;
     let fitting = true;
     let loadTimer;
     let loading = false;
@@ -271,7 +272,7 @@
         return;
       }
       retried = true;
-      setZoom(100, true);
+      setZoom(fitZoom, true);
       startLoading('Reloading dashboard…', true);
     }
 
@@ -316,17 +317,17 @@
     }
     const savedZoom = Number(saved);
     const restoreFit = saved === 'fit' || !Number.isFinite(savedZoom) || savedZoom < min || savedZoom > max;
-    setZoom(restoreFit ? 100 : savedZoom, restoreFit);
+    setZoom(restoreFit ? fitZoom : savedZoom, restoreFit);
     new ResizeObserver(sizeReport).observe(viewport);
 
     slider.addEventListener('input', () => setZoom(Number(slider.value)));
     zoomOut.addEventListener('click', () => setZoom(zoom - step));
     zoomIn.addEventListener('click', () => setZoom(zoom + step));
-    fit.addEventListener('click', () => setZoom(100, true));
+    fit.addEventListener('click', () => setZoom(fitZoom, true));
     normal.addEventListener('click', () => setZoom(100));
     refresh.addEventListener('click', () => {
       retried = false;
-      setZoom(100, true);
+      setZoom(fitZoom, true);
       startLoading('Reloading dashboard…', true);
     });
 
@@ -334,7 +335,7 @@
       if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.key === '+') setZoom(zoom + step);
       else if (event.key === '-') setZoom(zoom - step);
-      else if (event.key === '0') setZoom(100, true);
+      else if (event.key === '0') setZoom(fitZoom, true);
       else return;
       event.preventDefault();
     });
